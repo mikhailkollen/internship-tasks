@@ -1,12 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
- <meta charset="UTF-8">
- <meta http-equiv="X-UA-Compatible" content="IE=edge">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <title>Iphone</title>
-</head>
-<body>
- 
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="./css-reset.css" />
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;300&display=swap"
+      rel="stylesheet"
+    />
+    <title>Iphone</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="phone-frame">
+        <div class="aside-btn mute-btn"></div>
+        <div class="aside-btn volume-up-btn"></div>
+        <div class="aside-btn volume-down-btn"></div>
+        <div class="aside-btn lock-btn"></div>
+        <div class="stripe top-left"></div>
+        <div class="stripe top-right"></div>
+        <div class="stripe bottom-left"></div>
+        <div class="stripe bottom-right"></div>
+        <div class="phone-container">
+          <div class="utilities-container">
+            <div class="proximity-sensor"></div>
+            <div class="camera-speaker">
+              <div class="camera"></div>
+              <div class="speaker"></div>
+            </div>
+          </div>
+
+          <div class="screen-container">
+            <div class="screen-elements-container">
+              <div class="screen-widgets">
+                <div class="network-battery-container">
+                  <div class="network">
+                    <span></span><span></span><span></span><span></span
+                    ><span></span>
+                    <p>SingTel</p>
+                    <svg
+                      width="16px"
+                      height="16px"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                      stroke="#ffffff"
+                    >
+                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                      <g
+                        id="SVGRepo_tracerCarrier"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></g>
+                      <g id="SVGRepo_iconCarrier">
+                        <path
+                          d="M16.7279 13.3866C14.1091 10.7678 9.87561 10.7554 7.27212 13.3589M20.6933 9.44443C15.8921 4.67136 8.10791 4.67136 3.30676 9.44443M13 18C13 18.5523 12.5523 19 12 19C11.4477 19 11 18.5523 11 18C11 17.4477 11.4477 17 12 17C12.5523 17 13 17.4477 13 18Z"
+                          stroke="#ffffff"
+                          stroke-width="2.256"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        ></path>
+                      </g>
+                    </svg>
+                  </div>
+                  <div class="swipe swipe-top"></div>
+                  <div class="battery">
+                    <svg
+                      fill="#ffffff"
+                      width="24px"
+                      height="24px"
+                      viewBox="0 0 32 32"
+                      version="1.1"
+                      xmlns="http://www.w3.org/2000/svg"
+                      stroke="#ffffff"
+                      stroke-width="1.024"
+                    >
+                      <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                      <g
+                        id="SVGRepo_tracerCarrier"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                      ></g>
+                      <g id="SVGRepo_iconCarrier">
+                        <title>battery2</title>
+                        <path
+                          d="M28 14c-0.553 0-1 0-1 0v-1c0-1.104-0.896-2-2-2h-20c-1.105 0-2 0.896-2 2v7c0 1.104 0.895 2 2 2h20c1.104 0 2-0.896 2-2v-1c0 0 0.447 0 1 0 0.552 0 1-0.448 1-1v-3c0-0.553-0.448-1-1-1zM26 20c0 0.552-0.448 1-1 1h-20c-0.553 0-1-0.448-1-1v-7c0-0.553 0.447-1 1-1h20c0.552 0 1 0.447 1 1v7zM5 20h6v-7h-6v7z"
+                        ></path>
+                      </g>
+                    </svg>
+                  </div>
+                </div>
+                <div class="time-date-container">
+                  <h1 class="time">5:18</h1>
+                  <p class="date">Wednesday, 24 September</p>
+                </div>
+              </div>
+              <div class="unlock-container swipe-to-unlock-text">
+                <div class="unlock-text">
+                  <span class="arrow-right">></span>
+                  <p class="">slide to unlock</p>
+                </div>
+                <div class="swipe swipe-bottom"></div>
+              </div>
+              <svg
+                class="camera-icon"
+                xmlns="http://www.w3.org/2000/svg"
+                width="28"
+                height="28"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  fill="darkgray"
+                  d="M4 4h3l2-2h6l2 2h3a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2m8 3a5 5 0 0 0-5 5a5 5 0 0 0 5 5a5 5 0 0 0 5-5a5 5 0 0 0-5-5m0 2a3 3 0 0 1 3 3a3 3 0 0 1-3 3a3 3 0 0 1-3-3a3 3 0 0 1 3-3Z"
+                />
+              </svg>
+            </div>
+          </div>
+          <div class="home-btn-container">
+            <div class="home-btn-frame">
+              <div class="home-btn"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
