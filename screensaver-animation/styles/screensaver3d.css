@@ -1,0 +1,49 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cube {
+  margin-top: 200px;
+  position: relative;
+  width: 400px;
+  height: 400px;
+  transform-style: preserve-3d;
+  transform: rotateX(30deg) rotateY(30deg);
+  animation: rotate 15s linear infinite;
+}
+
+.side {
+  position: absolute;
+  width: 400px;
+  height: 400px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: black;
+  border: 1px solid white;
+}
+
+.front {
+  transform: translateZ(200px);
+}
+
+.back {
+  transform: translateZ(-200px) rotateY(180deg);
+}
+
+.right {
+  transform: rotateY(90deg) translateZ(200px);
+}
+
+.left {
+  transform: rotateY(-90deg) translateZ(200px);
+}
+
+.top {
+  transform: rotateX(90deg) translateZ(200px);
+}
+
+.bottom {
+  transform: rotateX(-90deg) translateZ(200px);
+}
