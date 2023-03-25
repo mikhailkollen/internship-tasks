@@ -1,5 +1,6 @@
 const sides = document.querySelectorAll(".side");
 const canvases = document.querySelectorAll("canvas");
+const audio = document.querySelector("audio");
 const logoSize = 60;
 
 sides.forEach((side) => {
