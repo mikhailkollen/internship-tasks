@@ -38,8 +38,15 @@ body {
   transition: background-color 0.2s ease-in-out;
 }
 
+.btn-back {
+  background-color: #fcc189;
+}
+
 .btn:hover {
   background-color: #8cb48a;
+}
+.btn-back:hover {
+  background-color: #f98110;
 }
 
 #btn {

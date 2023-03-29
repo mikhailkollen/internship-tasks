@@ -1,250 +1,369 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
- <meta charset="UTF-8">
- <meta http-equiv="X-UA-Compatible" content="IE=edge">
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
- <link rel="preconnect" href="https://fonts.googleapis.com">
- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
- <link rel="stylesheet" href="./styles/css-reset.css">
- <link rel="stylesheet" href="./styles/styles.css">
- <title>Dashboard</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles/css-reset.css">
+  <link rel="stylesheet" href="./styles/styles.css">
+  <link rel="icon" type="image/png" href="./assets/misc/favicon.png" />
+  <title>Dashboard</title>
 </head>
+
 <body class="page">
- <aside class="sidebar page_sidebar">
-  <div class="sidebar_content">
-   <div class="sidebar_content_logo logo"></div>
-   <div class="sidebar_content_part">
-    <h4 class="content_part_title title">D A S H B O A R D</h4>
-    <ul class="content_part_list list">
-     <li class="content_part_list_item item">
-      <details class="content_part_list_item_details details">
-       <summary class="details_summary summary"><span class="summary_icon summary_icon_dashboard"></span>
-        <h4 class="summary_title text_active">
-         Dashboard
-        </h4> </summary>
-       <ul class="details_summary_links links">
-        <li class="details_summary_links_item">
-         <a href="#" class="links_item_link text_active">Analytics</a>
-        </li>
-        <li class="details_summary_links_item">
-         <a href="#" class="links_item_link">Finance</a>
-        </li>
-        <li class="details_summary_links_item">
-         <a href="#" class="links_item_link">Job Board</a>
-        </li>
-       </ul>
-      </details>
-     </li>
-     <li class="content_part_list_item item">
-      <details class="content_part_list_item_details details">
-       <summary class="details_summary summary"><span class="summary_icon summary_icon_messages"></span>
-        <h4 class="summary_title">
-         Messages
-        </h4>
-       </summary>
-       <ul class="details_summary_links links">
-        <li class="details_summary_links_item">
-         <a href="#" class="links_item_link">Analytics</a>
-        </li>
-        <li class="details_summary_links_item">
-         <a href="#" class="links_item_link">Finance</a>
-        </li>
-        <li class="details_summary_links_item">
-         <a href="#" class="links_item_link">Job Board</a>
-        </li>
-       </ul>
-      </details>
-     </li>
-     <li class="content_part_list_item item">
-      <details class="content_part_list_item_details details">
-       <summary class="details_summary summary"><span class="summary_icon summary_icon_friends"></span>
-        <h4 class="summary_title">
-         Friends
-        </h4>
-       </summary>
-       <ul class="details_summary_links links">
-        <li class="details_summary_links_item">
-         <a href="#" class="links_item_link">Analytics</a>
-        </li>
-        <li class="details_summary_links_item">
-         <a href="#" class="links_item_link">Finance</a>
-        </li>
-        <li class="details_summary_links_item">
-         <a href="#" class="links_item_link">Job Board</a>
-        </li>
-       </ul>
-      </details>
-     </li>
-     <li class="content_part_list_item item">
-      <details class="content_part_list_item_details details">
-       <summary class="details_summary summary"><span class="summary_icon summary_icon_apps"></span>
-        <h4 class="summary_title">
-         Apps
-        </h4>
-       </summary>
-       <ul class="details_summary_links links">
-        <li class="details_summary_links_item">
-         <a href="#" class="links_item_link">Analytics</a>
-        </li>
-        <li class="details_summary_links_item">
-         <a href="#" class="links_item_link">Finance</a>
-        </li>
-        <li class="details_summary_links_item">
-         <a href="#" class="links_item_link">Job Board</a>
-        </li>
-       </ul>
-      </details>
-     </li>
+  <aside class="sidebar">
+    <div class="sidebar__content">
+      <img src="./assets/icons/logo.svg" class="content__logo logo" alt="logo">
+      <div class="content-part content-part__first">
+        <h4 class="content-part__title title">D A S H B O A R D</h4>
+        <ul class="content-part__list list" role="navigation" aria-label="Dashboard">
+          <li class="list__item item">
+            <details class="item__details details" aria-label="Toggle navigation" aria-expanded="false">
+              <summary class="details__summary summary"><img class="summary__icon" src="./assets/icons/stats.svg"
+                  alt="stats icon">
+                <h4 class="summary__title text_active">
+                  Dashboard
+                </h4>
+              </summary>
+              <ul class="summary__links links">
+                <li class="links__item">
+                  <a href="#" class="item__link text_active">Analytics</a>
+                </li>
+                <li class="links__item">
+                  <a href="#" class="item__link">Finance</a>
+                </li>
+                <li class="links__item">
+                  <a href="#" class="item__link">Job Board</a>
+                </li>
+              </ul>
+            </details>
+          </li>
+          <li class="list__item">
+            <details class="item__details details" aria-label="Toggle navigation" aria-expanded="false">
+              <summary class="details__summary summary"><img class="summary__icon" src="./assets/icons/mail.svg"
+                  alt="mail icon">
+                <h4 class="summary__title">
+                  Messages
+                </h4>
+              </summary>
+              <ul class="summary__links links">
+                <li class="links__item">
+                  <a href="#" class="item__link">Analytics</a>
+                </li>
+                <li class="links__item">
+                  <a href="#" class="item__link">Finance</a>
+                </li>
+                <li class="links__item">
+                  <a href="#" class="item__link">Job Board</a>
+                </li>
+              </ul>
+            </details>
+          </li>
+          <li class="list__item">
+            <details class="item__details details" aria-label="Toggle navigation" aria-expanded="false">
+              <summary class="details__summary summary"><img class="summary__icon" src="./assets/icons/user.svg"
+                  alt="user icon">
+                <h4 class="summary__title">
+                  Friends
+                </h4>
+              </summary>
+              <ul class="summary__links links">
+                <li class="links__item">
+                  <a href="#" class="item__link">Analytics</a>
+                </li>
+                <li class="links__item">
+                  <a href="#" class="item__link">Finance</a>
+                </li>
+                <li class="links__item">
+                  <a href="#" class="item__link">Job Board</a>
+                </li>
+              </ul>
+            </details>
+          </li>
+          <li class="list__item">
+            <details class="item__details details" aria-label="Toggle navigation" aria-expanded="false">
+              <summary class="details__summary summary"><img class="summary__icon" src="./assets/icons/apps.svg"
+                  alt="apps icon">
+                <h4 class="summary__title">
+                  Apps
+                </h4>
+              </summary>
+              <ul class="summary__links links">
+                <li class="links__item">
+                  <a href="#" class="item__link">Analytics</a>
+                </li>
+                <li class="links__item">
+                  <a href="#" class="item__link">Finance</a>
+                </li>
+                <li class="links__item">
+                  <a href="#" class="item__link">Job Board</a>
+                </li>
+              </ul>
+            </details>
+          </li>
+        </ul>
+      </div>
+      <div class="content-part">
+        <h4 class="content-part__title title">P A G E S</h4>
+        <ul class="content-part__list list" role="navigation" aria-label="Pages">
+          <li class="list__item">
+            <details class="item__details details" aria-label="Toggle navigation" aria-expanded="false">
+              <summary class="details__summary summary"><img class="summary__icon" src="./assets/icons/help.svg"
+                  alt="help icon">
+                <h4 class="summary__title ">
+                  Help Center
+                </h4>
+              </summary>
+              <ul class="summary__links links">
+                <li class="links__item">
+                  <a href="#" class="item__link">Analytics</a>
+                </li>
+                <li class="links__item">
+                  <a href="#" class="item__link">Finance</a>
+                </li>
+                <li class="links__item">
+                  <a href="#" class="item__link">Job Board</a>
+                </li>
+              </ul>
+            </details>
+          </li>
+          <li class="list__item">
+            <details class="item__details details" aria-label="Toggle navigation" aria-expanded="false">
+              <summary class="details__summary summary"><img class="summary__icon" src="./assets/icons/folder.svg"
+                  alt="folder icon">
+                <h4 class="summary__title">
+                  File Manager
+                </h4>
+              </summary>
+              <ul class="summary__links links">
+                <li class="links__item">
+                  <a href="#" class="item__link">Analytics</a>
+                </li>
+                <li class="links__item">
+                  <a href="#" class="item__link">Finance</a>
+                </li>
+                <li>
+                  <a href="#" class="item__link">Job Board</a>
+                </li>
+              </ul>
+            </details>
+          </li>
+          </ul>
+      </div>
+    </div>
+    <ul class="sidebar__footer">
 
-   </div>
-   <div class="sidebar_content_part">
-    <h4 class="content_part_title title">P A G E S</h4>
-    <ul class="content_part_list list">
-     <li class="content_part_list_item item">
-      <details class="content_part_list_item_details details">
-       <summary class="details_summary summary"><span class="summary_icon summary_icon_help"></span>
-        <h4 class="summary_title ">
-         Help Center
-        </h4>
-       </summary>
-       <ul class="details_summary_links links">
-        <li class="details_summary_links_item">
-         <a href="#" class="links_item_link">Analytics</a>
-        </li>
-        <li class="details_summary_links_item">
-         <a href="#" class="links_item_link">Finance</a>
-        </li>
-        <li class="details_summary_links_item">
-         <a href="#" class="links_item_link">Job Board</a>
-        </li>
-       </ul>
-      </details>
-     </li>
-     <li class="content_part_list_item item">
-      <details class="content_part_list_item_details details">
-       <summary class="details_summary summary"><span class="summary_icon summary_icon_files"></span>
-        <h4 class="summary_title">
-         File Manager
-        </h4>
-       </summary>
-       <ul class="details_summary_links links">
-        <li class="details_summary_links_item">
-         <a href="#" class="links_item_link">Analytics</a>
-        </li>
-        <li class="details_summary_links_item">
-         <a href="#" class="links_item_link">Finance</a>
-        </li>
-        <li >
-         <a href="#" class="links_item_link">Job Board</a>
-        </li>
-       </ul>
-      </details>
-     </li>
-   
-   </div>
-  </div>
-  <div class="sidebar_footer">
-   <span class="sidebar_footer_icon icon_filters"></span>
-   <span class="sidebar_footer_icon icon_logout"></span>
-   <span class="sidebar_footer_icon icon_network"></span>
-  </div>
- </aside>
+      <li><a href="#"><img class="sidebar__footer-icon" src="./assets/icons/filters.svg" alt="filters icon"></a></li>
+      <li><a href="#"><img class="sidebar__footer-icon" src="./assets/icons/logout.svg" alt="logout icon"></a></li>
+      <li><a href="#"><img class="sidebar__footer-icon" src="./assets/icons/network.svg" alt="network icon"></a></li>
+    </ul>
+  </aside>
 
- <main class="main">
-   <header class="header page_header">
-    <form action="" class="header_form form">
-     <!-- <i class="header_form_icon icon"></i> -->
-     <input type="search" class="header_input input" placeholder="Search...">
-    </form>
-    <div class="header_widgets">
-     <span class="header_widgets_item header_widgets_item_icon icon_bell"></span>
-     <span class="header_widgets_item header_widgets_item_icon icon_schedule"></span>
-     <span class="header_widgets_item header_widgets_item_icon icon_apps"></span>
-     <img src="./assets/misc/profile-image.png" alt="profile image"
-      class="header_widgets_item header_widgets_item_profile_photo">
-   
+  <main class="main">
+    <header class="header">
+      <form action="submit" class="header__form form">
+        <input type="search" class="form__input input" placeholder="Search..." aria-label="Search website">
+      </form>
+      <ul class="header__widgets widgets" aria-label="navigation">
+        <li class="widgets__item"><a href="#"><img class="widgets__item_icon icon_bell" src="./assets/icons/bell.svg"
+              alt="bell icon">
+            <span class="dot_red"></span>
+          </a></li>
+
+        <li class="widgets__item "><a href="#"><img class="widgets__item_icon" src="./assets/icons/schedule.svg"
+              alt="schedule icon"></a></li>
+
+        <li class="widgets__item "><a href="#"><img class="widgets__item_icon" src="./assets/icons/apps.svg"
+              alt="apps icon"></a></li>
+
+        <li class="widgets__item header_logo"><img class="" src="./assets/icons/logo.svg" alt="logo"></li>
+
+        <li class="widgets__item avatar">
+          <img src="./assets/misc/avatar.png" alt="profile image" class=" widgets__item_avatar">
+        </li>
+
+      </ul>
+    </header>
+    <div class="main__content">
+      <article class="banner">
+        <div class="banner__content">
+          <div class="banner__content-part">
+            <h1 class="banner__title">Unlock premium stats</h1>
+            <p class="banner__text">Get up to 10TB of storage for a limited time</p>
+          </div>
+          <div class="banner__content-part">
+            <button class="banner__button button" aria-label="Upgrade to Premium">
+              <span class="button-icon icon_lightning"></span> Upgrade
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <article class="main_content_stats stats">
+        <div class="stats__item">
+          <div class="stats__item-header">
+            <h3 class="stats__item-title">Revenue</h3>
+            <p class="stats__item-text">$56,945</p>
+          </div>
+          <div class="stats__item-footer">
+            <span class="stats__item-footer-shift shift_positive">+45%</span>
+            <span class="stats__item-footer-text">From 4.6%</span>
+          </div>
+        </div>
+        <div class="stats__item">
+          <div class="stats__item-heading">
+            <h3 class="stats__item-title">Users</h3>
+            <p class="stats__item-text">76.8%</p>
+          </div>
+          <div class="stats__item-footer">
+            <span class="stats__item-footer-shift shift_negative">-1.7%</span>
+            <span class="stats__item-footer-text">From 4.6%</span>
+          </div>
+        </div>
+        <div class="stats__item">
+          <div class="stats__item-heading">
+            <h3 class="stats__item-title">New Signups</h3>
+            <p class="stats__item-text">116</p>
+          </div>
+          <div class="stats__item-footer">
+            <span class="stats__item-footer-shift shift_neutral">0.00</span>
+          </div>
+        </div>
+        <div class="stats__item">
+          <div class="stats__item-heading">
+            <h3 class="stats__item-title">Retention</h3>
+            <p class="stats__item-text">12.67%</p>
+          </div>
+          <div class="stats__item-footer">
+            <span class="stats__item-footer-shift shift_positive">+0.6%</span>
+            <span class="stats__item-footer-text">From 4.6%</span>
+          </div>
+        </div>
+
+      </article>
+
+      <article class="main-content-graph graph">
+        <div class="article-header">
+          <h2 class="header__title">Performance</h2>
+          <img src="./assets/icons/three-dots.svg" alt="three dots" class="header__icon">
+        </div>
+        <div class="graph__content content">
+          <div class="content__y-axis y-axis">
+            <span class="y-axis__item">400</span>
+            <span class="y-axis__item">300</span>
+            <span class="y-axis__item">200</span>
+            <span class="y-axis__item">100</span>
+            <span class="y-axis__item">0</span>
+          </div>
+          <div class="content__body body">
+            <img class="body__chart chart" src="./assets/misc/chart.svg" alt="chart">
+            <img class="body__chart-mobile chart-mobile" src="./assets/misc/chart-mobile.svg" alt="chart">
+
+            <div class="body__x-axis x-axis">
+              <span class="x-axis__item">Sun</span>
+              <span class="x-axis__item">Mon</span>
+              <span class="x-axis__item">Tue</span>
+              <span class="x-axis__item">Wed</span>
+              <span class="x-axis__item">Thu</span>
+              <span class="x-axis__item">Fri</span>
+              <span class="x-axis__item">Sat</span>
+            </div>
+          </div>
+        </div>
+        <div class="graph__sources sources">
+          <div class="sources__item">
+            <span class="sources__item-icon icon-dot-blue"></span>
+            <span class="sources__item-text">Instagram</span>
+          </div>
+          <div class="sources__item">
+            <span class="sources__item-icon icon-dot-green"></span>
+            <span class="sources__item-text">Facebook</span>
+          </div>
+        </div>
+      </article>
+
+      <article class="table">
+        <div class="table__header article-header">
+          <h2 class="header__title">Installed apps</h2>
+          <img src="./assets/icons/three-dots.svg" alt="three dots">
+        </div>
+        <div class="table__scroll-wrapper">
+          <table class="table__container">
+            <colgroup>
+              <col class="column_source">
+              <col>
+              <col>
+              <col>
+              <col>
+              <col>
+            </colgroup>
+            <tbody class="table__body">
+              <tr class="table__row row__header">
+                <th class="table__cell source">Source</th>
+                <th class="table__cell">Amount</th>
+                <th class="table__cell">Status</th>
+                <th class="table__cell">User ID</th>
+                <th class="table__cell">Joined</th>
+                <th class="table__cell">Group</th>
+              </tr>
+              <tr class="table__row">
+                <td class="table__cell column_source"> <span class="icon_app icon_zeplin"></span> Zeplin</td>
+                <td class="table__cell">686.00</td>
+                <td class="table__cell column_status"><span class="status_active">Active</span></td>
+                <td class="table__cell">114423</td>
+                <td class="table__cell">October</td>
+                <td class="table__cell">Design</td>
+              </tr>
+              <tr class="table__row">
+                <td class="table__cell column_source"><span class="icon_app icon_figma"></span>Figma</td>
+                <td class="table__cell">864.00</td>
+                <td class="table__cell column_status"><span class="status_pending">Pending</span></td>
+                <td class="table__cell">76223</td>
+                <td class="table__cell">June</td>
+                <td class="table__cell">Finance</td>
+              </tr>
+              <tr class="table__row">
+                <td class="table__cell column_source"><span class="icon_app icon_meta"></span>Meta</td>
+                <td class="table__cell">176.00</td>
+                <td class="table__cell column_status "><span class="status_cancelled">Cancelled</span></td>
+                <td class="table__cell">89453</td>
+                <td class="table__cell">March</td>
+                <td class="table__cell">Coding</td>
+              </tr>
+              <tr class="table__row">
+                <td class="table__cell column_source"><span class="icon_app icon_angular"></span>Angular</td>
+                <td class="table__cell">49.00</td>
+                <td class="table__cell column_status"><span class="status_active">Active</span></td>
+                <td class="table__cell">11467</td>
+                <td class="table__cell">February</td>
+                <td class="table__cell">Marketing</td>
+              </tr>
+              <tr class="table__row">
+                <td class="table__cell column_source"><span class="icon_app icon_vue"></span>Vue</td>
+                <td class="table__cell">999.00</td>
+                <td class="table__cell column_status"><span class="status_active">Active</span></td>
+                <td class="table__cell">67385</td>
+                <td class="table__cell">October</td>
+                <td class="table__cell">Finance</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table__footer">
+          <button type="button" aria-label="Previous table page"><img src="./assets/icons/arrow-back.svg"
+              alt="arrow back"></button>
+          <p class="footer_pages">1/15</p>
+          <button type="button" aria-label="Next table page"><img src="./assets/icons/arrow-forward.svg"
+              alt="arrow forward"></button>
+        </div>
+      </article>
     </div>
-   </header>
-  <section class="main_content">
-   <article class="main_content_banner banner">
-    <div class="banner_content">
-     <div class="banner_content_part">
-      <h1 class="banner_title">Unlock premium stats</h1>
-      <p class="banner_text">Get up to 10TB of storage for a limited time</p>
-     </div>
-     <div class="banner_content_part">
-      <button class="banner_content_part_button button">
-       <span class="button_icon icon_lightning"></span> Upgrade
-      </button>
-     </div>
-    </div>
-   </article>
-   <article class="main_content_stats stats">
-    <div class="stats_item">
-      <div class="stats_item_heading">
-        <h3 class="stats_item_title">Revenue</h3>
-        <p class="stats_item_text">$56,945</p>
-      </div>
-      <div class="stats_item_footer">
-        <span class="stats_item_footer_shift shift_positive">+45%</span>
-        <span class="stats_item_footer_text">From 4.6%</span>
-      </div>
-    </div>
-    <div class="stats_item">
-      <div class="stats_item_heading">
-        <h3 class="stats_item_title">Users</h3>
-        <p class="stats_item_text">76.8%</p>
-      </div>
-      <div class="stats_item_footer">
-        <span class="stats_item_footer_shift shift_negative">-1.7%</span>
-        <span class="stats_item_footer_text">From 4.6%</span>
-      </div>
-    </div>
-    <div class="stats_item">
-      <div class="stats_item_heading">
-        <h3 class="stats_item_title">New Signups</h3>
-        <p class="stats_item_text">116</p>
-      </div>
-      <div class="stats_item_footer">
-        <span class="stats_item_footer_shift shift_neutral">0.00</span>
-      </div>
-    </div>
-    <div class="stats_item">
-      <div class="stats_item_heading">
-        <h3 class="stats_item_title">Retention</h3>
-        <p class="stats_item_text">12.67%</p>
-      </div>
-      <div class="stats_item_footer">
-        <span class="stats_item_footer_shift shift_positive">+0.6%</span>
-        <span class="stats_item_footer_text">From 4.6%</span>
-      </div>
-    </div>
-     
-   </article>
-   <article class="main_content_graph graph">
-    <div class="graph_header">
-      <h2 class="header_title">Performance</h2>
-      <span class="header_icon"></span>
-    </div>
-    <div class="graph_content">
-      <img src="./assets/misc/graph.png" alt="graph">
-    </div>
-    <div class="graph_sources">
-      <div class="graph_sources_item">
-        <span class="graph_sources_item_icon icon_dot_blue"></span>
-        <span class="graph_sources_item_text">Instagram</span>
-      </div>
-      <div class="graph_sources_item">
-        <span class="graph_sources_item_icon icon_dot_green  "></span>
-        <span class="graph_sources_item_text">Facebook</span>
-      </div>
-      
-    </div>
-   </article>
-  </section>
-  
- </main>
+
+  </main>
 </body>
+
 </html>
