@@ -1,0 +1,94 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100vh;
+  width: 100%;
+}
+
+.dvd-container {
+  position: relative;
+  width: inherit;
+  height: inherit;
+  background-color: #000;
+  overflow: hidden;
+}
+
+.dvd-logo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 220px;
+  height: 200px;
+  filter: invert(100%);
+  animation: dvd-animation 3.38s linear infinite,
+    dvd-logo-color-animation 3.38s infinite step-end;
+}
+
+.btn {
+  text-decoration: none;
+  padding: 20px 40px;
+  background-color: #9cc69b;
+  color: white;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.btn:hover {
+  background-color: #8cb48a;
+}
+
+#btn {
+  background-color: #000;
+  padding: 10px 20px;
+  font-size: 1.4rem;
+  border-radius: 10px;
+  margin: 1rem 0rem 0rem 1rem;
+  border: none;
+  animation: dvd-logo-color-animation 3.38s infinite step-end;
+}
+
+@keyframes dvd-animation {
+  0% {
+    transform: translate(45vw, 0vh);
+  }
+  25% {
+    transform: translate(calc(100vw - 220px), 40vh);
+  }
+  50% {
+    transform: translate(45vw, calc(100vh - 180px));
+  }
+  75% {
+    transform: translate(calc(0vw), 40vh);
+  }
+  100% {
+    transform: translate(45vw, 0vh);
+  }
+}
+
+@keyframes dvd-logo-color-animation {
+  0% {
+    filter: invert(89%) sepia(24%) saturate(425%) hue-rotate(0deg)
+      brightness(96%) contrast(90%);
+  }
+  25% {
+    filter: invert(89%) sepia(24%) saturate(425%) hue-rotate(90deg)
+      brightness(96%) contrast(90%);
+  }
+  50% {
+    filter: invert(89%) sepia(24%) saturate(425%) hue-rotate(180deg)
+      brightness(96%) contrast(90%);
+  }
+  75% {
+    filter: invert(89%) sepia(24%) saturate(425%) hue-rotate(270deg)
+      brightness(96%) contrast(90%);
+  }
+  100% {
+    filter: invert(89%) sepia(24%) saturate(425%) hue-rotate(0deg)
+      brightness(96%) contrast(90%);
+  }
+}
