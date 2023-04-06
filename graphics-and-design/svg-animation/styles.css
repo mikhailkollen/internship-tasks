@@ -1,0 +1,39 @@
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+svg {
+  width: 200px;
+  height: 200px;
+  margin-top: 300px;
+}
+
+#minutes-hand {
+  transform-origin: 50% 50%;
+  animation: minutes-hand-animation 5s linear infinite;
+}
+
+#hours-hand {
+  transform-origin: 50% 50%;
+  animation: hours-hand-animation 25s linear infinite;
+}
+
+@keyframes minutes-hand-animation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes hours-hand-animation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
