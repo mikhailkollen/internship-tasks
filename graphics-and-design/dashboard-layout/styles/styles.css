@@ -54,6 +54,7 @@ html {
   flex-grow: 0;
   box-sizing: border-box;
   position: relative;
+  position: fixed;
 }
 
 .header {
@@ -243,6 +244,7 @@ ul.content-part__list:last-of-type {
   display: flex;
   align-items: center;
   flex-direction: column;
+  margin-left: auto;
 }
 
 .main__content {
