@@ -1,77 +1,110 @@
+import { List } from "./components/List.js";
+import { Button } from "./components/Button.js";
+import { SearchInput } from "./components/Search.js";
+import { Modal } from "./components/Modal.js";
+
 (function () {
-    let state = undefined;
+  let state = undefined;
 
-    /**
-     * Global application state
-     * @template T
-     * @param {T} initialValue
-     * @returns {[T, function(T): void]}
-     */
-    function useState(initialValue) {
-        state = state || initialValue;
+  /**
+   * Global application state
+   * @template T
+   * @param {T} initialValue
+   * @returns {[T, function(T): void]}
+   */
+  function useState(initialValue) {
+    state = state || initialValue;
 
-        function setValue(newValue) {
-            state = newValue;
-            renderApp();
+    function setValue(newValue) {
+      state = newValue;
+      renderApp();
+    }
+
+    return [state, setValue];
+  }
+
+  /**
+   * Functional component for the list
+   * @param items {string[]}
+   * @returns {HTMLElement} - List element
+   */
+
+  /**
+   * Button component
+   * @param text {string}
+   * @param onClick {function}
+   * @returns {HTMLButtonElement} - Button element
+   */
+
+  /**
+   * App container
+   * @returns {HTMLDivElement} - The app container
+   */
+  function App() {
+    const tasks = localStorage.getItem("tasks");
+    const [allTasks, setAllTasks] = useState(tasks ? JSON.parse(tasks) : null);
+    // const [allTasks, setAllTasks] = useState([
+    //   ["Item 1", "completed"],
+    //   ["Item 2", null],
+    //   ["Item 3", "completed"],
+    // ]);
+    const div = document.createElement("div");
+    div.classList.add("app");
+    const modal = Modal({ children: { setAllTasks, allTasks } });
+    const list = List({ allTasks, setAllTasks });
+    const button = Button({
+      text: "+ New Task",
+      onClick: () => addItem(modal),
+    });
+    const searchInput = SearchInput({
+      onInput: filterItems,
+    });
+
+    function filterItems(value) {
+      const items = document.querySelectorAll("li");
+      items.forEach((item) => {
+        if (item.dataset.value.toLowerCase().includes(value.toLowerCase())) {
+          item.style.display = "flex";
+        } else {
+          item.style.display = "none";
         }
-
-        return [state, setValue];
+      });
     }
 
-    /**
-     * Functional component for the list
-     * @param items {string[]}
-     * @returns {HTMLElement} - List element
-     */
-    function List({items}) {
-        const listItems = items.map((item) => `<li>${item}</li>`).join("");
-        const ul = document.createElement("ul");
-        ul.innerHTML = listItems;
-        return ul;
+    function addItem(modal) {
+      const overlay = document.createElement("div");
+      overlay.classList.add("overlay");
+      document.body.append(overlay);
+      overlay.addEventListener("click", () => {
+        overlay.remove();
+        const modalInput = document.querySelector("#modal-input");
+        modalInput.value = "";
+        modal.remove();
+      });
+      div.append(modal);
     }
+    const title = document.createElement("h1");
+    title.innerHTML = "To Do List";
+    title.classList.add("app-title");
 
-    /**
-     * Button component
-     * @param text {string}
-     * @param onClick {function}
-     * @returns {HTMLButtonElement} - Button element
-     */
-    function Button({text, onClick}) {
-        const button = document.createElement("button");
-        button.innerHTML = text;
-        button.onclick = onClick;
-        return button;
-    }
+    const header = document.createElement("div");
+    header.classList.add("header");
+    header.append(searchInput, button);
+    div.append(title, header, list);
 
+    return div;
+  }
 
-    /**
-     * App container
-     * @returns {HTMLDivElement} - The app container
-     */
-    function App() {
-        const [items, setItems] = useState(["Item 1", "Item 2", "Item 3"]);
+  /**
+   * Render the app.
+   * On change whole app is re-rendered.
+   */
+  function renderApp() {
+    const appContainer = document.getElementById("functional");
+    appContainer.innerHTML = "";
+    appContainer.append(App());
+  }
 
-        function addItem() {
-            setItems([...items, `Item ${items.length + 1}`]);
-        }
-
-        const div = document.createElement("div");
-        const list = List({items});
-        const button = Button({text: "Add item", onClick: addItem});
-        div.append(list, button);
-        return div;
-    }
-
-    /**
-     * Render the app.
-     * On change whole app is re-rendered.
-     */
-    function renderApp() {
-        const appContainer = document.getElementById("functional-example");
-        appContainer.innerHTML = "";
-        appContainer.append(App());
-    }
-
-    // initial render
-    renderApp();
+  // initial render
+  renderApp();
 })();
