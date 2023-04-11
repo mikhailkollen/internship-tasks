@@ -34,7 +34,7 @@ export const ListItem = ({ task }) => {
   } else if (checkIfTomorrow(task.date)) {
     deadline.innerHTML = "Tomorrow";
   } else {
-    const date = new Date(task.date).toLocaleDateString("en-US", {
+    const date = new Date(task.date).toLocaleDateString("en-GB", {
       weekday: "long",
       day: "numeric",
       month: "short",

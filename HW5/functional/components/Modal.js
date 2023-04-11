@@ -1,4 +1,5 @@
 import { tagLabels } from "../utils.js";
+import { updateLocalStorage } from "../utils.js";
 
 export function Modal({ children }) {
   const { setAllTasks, allTasks } = children;
@@ -134,9 +135,9 @@ export function Modal({ children }) {
     updateLocalStorage(newTasks);
   }
 
-  function updateLocalStorage(newTasks) {
-    localStorage.setItem("tasks", JSON.stringify(newTasks));
-  }
+  // function updateLocalStorage(newTasks) {
+  //   localStorage.setItem("tasks", JSON.stringify(newTasks));
+  // }
 
   return modal;
 }
