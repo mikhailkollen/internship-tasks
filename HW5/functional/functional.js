@@ -41,13 +41,14 @@ import { Modal } from "./components/Modal.js";
    * @returns {HTMLDivElement} - The app container
    */
   function App() {
-    const tasks = localStorage.getItem("tasks");
-    const [allTasks, setAllTasks] = useState(tasks ? JSON.parse(tasks) : null);
-    // const [allTasks, setAllTasks] = useState([
-    //   ["Item 1", "completed"],
-    //   ["Item 2", null],
-    //   ["Item 3", "completed"],
-    // ]);
+    let tasks;
+    try {
+      tasks = localStorage.getItem("tasks");
+    } catch (e) {
+      tasks = undefined;
+    }
+
+    const [allTasks, setAllTasks] = useState(tasks ? JSON.parse(tasks) : []);
     const div = document.createElement("div");
     div.classList.add("app");
     const modal = Modal({ children: { setAllTasks, allTasks } });
@@ -55,6 +56,7 @@ import { Modal } from "./components/Modal.js";
     const button = Button({
       text: "+ New Task",
       onClick: () => addItem(modal),
+      className: "add-task-button",
     });
     const searchInput = SearchInput({
       onInput: filterItems,

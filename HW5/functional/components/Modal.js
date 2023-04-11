@@ -1,4 +1,4 @@
-import { tagLabels } from "../tagLabels.js";
+import { tagLabels } from "../utils.js";
 
 export function Modal({ children }) {
   const { setAllTasks, allTasks } = children;
@@ -11,7 +11,7 @@ export function Modal({ children }) {
   });
 
   const title = document.createElement("label");
-  title.classList.add("list-title");
+  title.classList.add("modal-title");
   title.textContent = "Add New Task";
   modal.appendChild(title);
 
@@ -21,20 +21,12 @@ export function Modal({ children }) {
   input.setAttribute("id", "modal-input");
   modal.appendChild(input);
 
-  // Create container for tags
   const tagDateContainer = document.createElement("div");
   tagDateContainer.classList.add("tag-date-container");
 
-  // Create radio buttons for tags
   const tagContainer = document.createElement("div");
   tagContainer.classList.add("tag-container");
 
-  const tagLabels = [
-    { tag: "health", bgColor: "#3c86f44f", color: "#0053CF" },
-    { tag: "work", bgColor: "#E8D7FF", color: "#9747FF" },
-    { tag: "home", bgColor: "#E2F7E2", color: "#639462" },
-    { tag: "other", bgColor: "#FFECC7", color: "#EA8C00" },
-  ];
   for (let i = 0; i < tagLabels.length; i++) {
     const label = document.createElement("label");
     label.classList.add("tag-label");
@@ -50,22 +42,25 @@ export function Modal({ children }) {
       label.style.borderStyle = "solid";
     }
     radio.addEventListener("change", (e) => {
-      for (let j = 0; j < tagLabels.length; j++) {
-        const parent = document.querySelectorAll(".tag-label")[j];
-        parent.style.borderColor = "transparent";
-        parent.style.borderWidth = "0px";
-        parent.style.borderStyle = "none";
-      }
+      const clickedLabel = e.target.parentElement;
+      const otherLabels = Array.from(
+        document.querySelectorAll(".tag-label")
+      ).filter((label) => label !== clickedLabel);
+
+      otherLabels.forEach((label) => {
+        label.style.borderColor = "transparent";
+        label.style.borderWidth = "0px";
+        label.style.borderStyle = "none";
+      });
+
       if (e.target.checked) {
-        const parent = e.target.parentElement;
-        parent.style.borderColor = tagLabels[i].color;
-        parent.style.borderWidth = "1px";
-        parent.style.borderStyle = "solid";
+        clickedLabel.style.borderColor = tagLabels[i].color;
+        clickedLabel.style.borderWidth = "1px";
+        clickedLabel.style.borderStyle = "solid";
       } else {
-        const parent = e.target.parentElement;
-        parent.style.borderColor = "transparent";
-        parent.style.borderWidth = "0px";
-        parent.style.borderStyle = "none";
+        clickedLabel.style.borderColor = "transparent";
+        clickedLabel.style.borderWidth = "0px";
+        clickedLabel.style.borderStyle = "none";
       }
     });
     const text = document.createTextNode(tagLabels[i].tag);
@@ -83,6 +78,7 @@ export function Modal({ children }) {
   dateInput.setAttribute("placeholder", "Due Date");
   dateInput.setAttribute("min", new Date().toISOString().split("T")[0]);
   dateInput.setAttribute("id", "modal-date");
+  dateInput.value = new Date().toISOString().split("T")[0];
   tagDateContainer.appendChild(dateInput);
   modal.appendChild(tagDateContainer);
 
@@ -118,11 +114,7 @@ export function Modal({ children }) {
 
   function addTask() {
     const inputValue = input.value.trim();
-    const dateValue = new Date(dateInput.value).toLocaleDateString("en-US", {
-      weekday: "long",
-      day: "numeric",
-      month: "short",
-    });
+    const dateValue = new Date(dateInput.value);
     if (inputValue === "") {
       alert("Please enter a valid task title");
       return;
@@ -138,8 +130,8 @@ export function Modal({ children }) {
     };
     const newTasks = allTasks ? [...allTasks, newTask] : [newTask];
     setAllTasks(newTasks);
-    updateLocalStorage(newTasks);
     closeModal();
+    updateLocalStorage(newTasks);
   }
 
   function updateLocalStorage(newTasks) {

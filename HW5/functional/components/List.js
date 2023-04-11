@@ -1,5 +1,6 @@
 import { ListItem } from "./Item.js";
 import { Button } from "./Button.js";
+import { tagLabels } from "../utils.js";
 
 export function List({ allTasks, setAllTasks }) {
   const allLists = document.createElement("div");
@@ -19,10 +20,10 @@ export function List({ allTasks, setAllTasks }) {
   completedList.append(completedTitle);
   allLists.append(list);
   allLists.append(completedList);
-  const tasks = document.createElement("ul");
+  const unfinishedTasks = document.createElement("ul");
   const completedTasks = document.createElement("ul");
   completedList.append(completedTasks);
-  list.append(tasks);
+  list.append(unfinishedTasks);
   if (allTasks) {
     const listItems = allTasks.filter((task) => {
       if (task.status !== "completed") {
@@ -37,8 +38,11 @@ export function List({ allTasks, setAllTasks }) {
     const updateLocalStorage = (newTasks) => {
       localStorage.setItem("tasks", JSON.stringify(newTasks));
     };
+
+    // Render completed tasks
     const completedTaskElements = completedListItems.map((task) => {
       const li = ListItem({ task });
+      const checkbox = li.querySelector("input");
       const button = Button({
         onClick: () => {
           const newTasks = allTasks.filter((item) => item !== task);
@@ -46,12 +50,31 @@ export function List({ allTasks, setAllTasks }) {
           updateLocalStorage(newTasks);
           li.remove();
         },
+        className: "delete-button",
       });
-      button.classList.add("delete-button");
       li.append(button);
-      li.firstChild.addEventListener("click", () => {
+      button.style.display = "none";
+      checkbox.addEventListener("change", () => {
         if (li.classList.contains("completed")) {
           li.classList.remove("completed");
+          unfinishedTasks.append(li);
+          const updatedLocalStorage = allTasks.map((item) => {
+            if (item.title === task.title) {
+              item.status = null;
+            }
+            return item;
+          });
+          li.querySelector("button").style.display = "block";
+          let tag = li.querySelector(".tag-label");
+          for (let i = 0; i < tagLabels.length; i++) {
+            if (tagLabels[i].tag === tag.innerHTML) {
+              tag.style.backgroundColor = tagLabels[i].bgColor;
+              tag.style.color = tagLabels[i].color;
+            }
+          }
+          updateLocalStorage(updatedLocalStorage);
+        } else {
+          li.classList.add("completed");
           completedTasks.append(li);
           const updatedLocalStorage = allTasks.map((item) => {
             if (item.title === task.title) {
@@ -59,26 +82,21 @@ export function List({ allTasks, setAllTasks }) {
             }
             return item;
           });
-          updateLocalStorage(updatedLocalStorage);
           li.querySelector("button").style.display = "none";
-        } else {
-          li.classList.add("completed");
-          tasks.append(li);
-          const updatedLocalStorage = allTasks.map((item) => {
-            if (item.title === task.title) {
-              item.status = null;
-            }
-            return item;
-          });
+          let tag = li.querySelector(".tag-label");
+          tag.style.backgroundColor = "#F5F5F5";
+          tag.style.color = "#838383";
           updateLocalStorage(updatedLocalStorage);
-          li.querySelector("button").style.display = "block";
         }
       });
       return li;
     });
 
+    // Render unfinished tasks
     const taskElements = listItems.map((task) => {
       const li = ListItem({ task });
+      const checkbox = li.querySelector("input");
+
       const button = Button({
         onClick: () => {
           const newTasks = allTasks.filter((item) => item !== task);
@@ -86,14 +104,32 @@ export function List({ allTasks, setAllTasks }) {
           setAllTasks(newTasks);
           li.remove();
         },
+        className: "delete-button",
       });
-      button.classList.add("delete-button");
 
       li.append(button);
 
-      li.firstChild.addEventListener("click", () => {
+      checkbox.addEventListener("change", () => {
         if (li.classList.contains("completed")) {
           li.classList.remove("completed");
+          unfinishedTasks.append(li);
+          const updatedLocalStorage = allTasks.map((item) => {
+            if (item.title === task.title) {
+              item.status = null;
+            }
+            return item;
+          });
+          li.querySelector("button").style.display = "block";
+          let tag = li.querySelector(".tag-label");
+          for (let i = 0; i < tagLabels.length; i++) {
+            if (tagLabels[i].tag === tag.innerHTML) {
+              tag.style.backgroundColor = tagLabels[i].bgColor;
+              tag.style.color = tagLabels[i].color;
+            }
+          }
+          updateLocalStorage(updatedLocalStorage);
+        } else {
+          li.classList.add("completed");
           completedTasks.append(li);
           const updatedLocalStorage = allTasks.map((item) => {
             if (item.title === task.title) {
@@ -101,25 +137,17 @@ export function List({ allTasks, setAllTasks }) {
             }
             return item;
           });
-          updateLocalStorage(updatedLocalStorage);
           li.querySelector("button").style.display = "none";
-        } else {
-          li.classList.add("completed");
-          tasks.append(li);
-          const updatedLocalStorage = allTasks.map((item) => {
-            if (item.title === task.title) {
-              item.status = null;
-            }
-            return item;
-          });
+          let tag = li.querySelector(".tag-label");
+          tag.style.backgroundColor = "#F5F5F5";
+          tag.style.color = "#838383";
           updateLocalStorage(updatedLocalStorage);
-          li.querySelector("button").style.display = "block";
         }
       });
       return li;
     });
 
-    tasks.append(...taskElements);
+    unfinishedTasks.append(...taskElements);
     completedTasks.append(...completedTaskElements);
   }
   return allLists;
