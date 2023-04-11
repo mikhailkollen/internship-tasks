@@ -64,13 +64,27 @@ import { Modal } from "./components/Modal.js";
 
     function filterItems(value) {
       const items = document.querySelectorAll("li");
-      items.forEach((item) => {
+
+      // search between not completed items
+      const unfinishedItems = [...items].filter(
+        (item) => !item.classList.contains("completed")
+      );
+      unfinishedItems.forEach((item) => {
         if (item.dataset.value.toLowerCase().includes(value.toLowerCase())) {
           item.style.display = "flex";
         } else {
           item.style.display = "none";
         }
       });
+
+      // search between all items
+      // items.forEach((item) => {
+      //   if (item.dataset.value.toLowerCase().includes(value.toLowerCase())) {
+      //     item.style.display = "flex";
+      //   } else {
+      //     item.style.display = "none";
+      //   }
+      // });
     }
 
     function addItem(modal) {
