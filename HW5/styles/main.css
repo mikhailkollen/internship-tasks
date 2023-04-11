@@ -60,7 +60,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  width: 100%;
+  width: 70%;
   border-radius: 12px;
   font-family: "Nunito", sans-serif;
   color: #1d1d1d;
@@ -89,7 +89,7 @@ input::placeholder {
 
 .modal {
   position: fixed;
-  top: 30%;
+  top: 25%;
   left: calc(50% - 262px);
   width: 524px;
   height: 371px;
@@ -240,11 +240,6 @@ input[type="checkbox"]:focus {
   background-repeat: no-repeat;
 }
 
-/* .add-task-button:active {
-  background-color: #0053cf;
-  color: #ffffff;
-} */
-
 .list-item div {
   display: flex;
   align-items: center;
@@ -279,6 +274,7 @@ input[type="checkbox"]:focus {
 }
 
 .add-button-active {
+  outline-color: #1d1d1d;
   background: #3c86f4;
 }
 

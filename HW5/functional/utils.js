@@ -25,10 +25,6 @@ export const checkIfTomorrow = (date) => {
   );
 };
 
-export const createDeleteIcon = () => {
-  const deleteIcon = document.createElement("img");
-  deleteIcon.setAttribute("src", "./assets/delete-icon.svg");
-  deleteIcon.setAttribute("alt", "delete icon");
-  deleteIcon.classList.add("delete-icon");
-  return deleteIcon;
+export const updateLocalStorage = (newTasks) => {
+  localStorage.setItem("tasks", JSON.stringify(newTasks));
 };

@@ -1,4 +1,4 @@
-import { List } from "./components/List.js";
+import { AllLists } from "./components/AllLists.js";
 import { Button } from "./components/Button.js";
 import { SearchInput } from "./components/Search.js";
 import { Modal } from "./components/Modal.js";
@@ -52,7 +52,7 @@ import { Modal } from "./components/Modal.js";
     const div = document.createElement("div");
     div.classList.add("app");
     const modal = Modal({ children: { setAllTasks, allTasks } });
-    const list = List({ allTasks, setAllTasks });
+    const list = AllLists({ allTasks, setAllTasks });
     const button = Button({
       text: "+ New Task",
       onClick: () => addItem(modal),
