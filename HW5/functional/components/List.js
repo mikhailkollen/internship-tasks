@@ -2,6 +2,7 @@ import { Button } from "./Button.js";
 import { ListItem } from "./Item.js";
 import { tagLabels } from "../utils.js";
 import { updateLocalStorage } from "../utils.js";
+import { deleteTaskFromTheServer, updateTaskOnTheServer } from "../utils.js";
 
 export const List = ({
   listItems,
@@ -29,6 +30,8 @@ export const List = ({
         const newTasks = allTasks.filter((item) => item !== task);
         setAllTasks(newTasks);
         updateLocalStorage(newTasks);
+
+        deleteTaskFromTheServer(task.id);
         li.remove();
       },
       className: "delete-button",
@@ -59,6 +62,8 @@ export const List = ({
             tag.style.color = tagLabels[i].color;
           }
         }
+        updateTaskOnTheServer({ ...task, status: null });
+
         updateLocalStorage(updatedLocalStorage);
       } else {
         li.classList.add("completed");
@@ -74,6 +79,7 @@ export const List = ({
         let tag = li.querySelector(".tag-label");
         tag.style.backgroundColor = "#F5F5F5";
         tag.style.color = "#838383";
+        updateTaskOnTheServer({ ...task, status: "completed" });
         updateLocalStorage(updatedLocalStorage);
       }
     });

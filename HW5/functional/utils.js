@@ -28,3 +28,44 @@ export const checkIfTomorrow = (date) => {
 export const updateLocalStorage = (newTasks) => {
   localStorage.setItem("tasks", JSON.stringify(newTasks));
 };
+
+export const uniqueId = () => {
+  const timestamp = Date.now().toString(36);
+  const randomStr = Math.random().toString(36).substring(2, 8);
+  return `${timestamp}-${randomStr}`;
+};
+
+export const addTaskToTheServer = async (task) => {
+  const response = await fetch("http://localhost:3004/tasks", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(task),
+  });
+  const data = await response.json();
+  console.log(data);
+  return data;
+};
+
+export const deleteTaskFromTheServer = async (id) => {
+  const response = await fetch(`http://localhost:3004/tasks/${id}`, {
+    method: "DELETE",
+  });
+  const data = await response.json();
+  console.log(data);
+  return data;
+};
+
+export const updateTaskOnTheServer = async (task) => {
+  const response = await fetch(`http://localhost:3004/tasks/${task.id}`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(task),
+  });
+  const data = await response.json();
+  console.log(data);
+  return data;
+};

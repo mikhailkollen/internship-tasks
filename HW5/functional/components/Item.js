@@ -3,6 +3,7 @@ import { tagLabels, checkIfToday, checkIfTomorrow } from "../utils.js";
 export const ListItem = ({ task }) => {
   const li = document.createElement("li");
   li.setAttribute("data-value", `${task.title}`);
+  li.setAttribute("data-id", `${task.id}`);
   const checkbox = document.createElement("input");
   checkbox.setAttribute("type", "checkbox");
   checkbox.setAttribute("class", "list-item-checkbox");

@@ -2,6 +2,7 @@ import { AllLists } from "./components/AllLists.js";
 import { Button } from "./components/Button.js";
 import { SearchInput } from "./components/Search.js";
 import { Modal } from "./components/Modal.js";
+import { Widgets } from "./components/Widgets.js";
 
 (function () {
   let state = undefined;
@@ -40,15 +41,25 @@ import { Modal } from "./components/Modal.js";
    * App container
    * @returns {HTMLDivElement} - The app container
    */
-  function App() {
-    let tasks;
-    try {
-      tasks = localStorage.getItem("tasks");
-    } catch (e) {
-      tasks = undefined;
-    }
 
-    const [allTasks, setAllTasks] = useState(tasks ? JSON.parse(tasks) : []);
+  function App() {
+    const localStorageTasks = localStorage.getItem("tasks");
+    const [allTasks, setAllTasks] = useState([]);
+
+    const getTasksFromTheServer = async () => {
+      const response = await fetch("http://localhost:3004/tasks/");
+      const tasks = await response.json();
+      // await localStorage.setItem("tasks", JSON.stringify(tasks));
+      setAllTasks(tasks);
+      console.log(tasks);
+      console.log(allTasks);
+      return tasks;
+    };
+
+    window.addEventListener("load", async () => {
+      await getTasksFromTheServer();
+    });
+
     const div = document.createElement("div");
     div.classList.add("app");
     const modal = Modal({ children: { setAllTasks, allTasks } });
@@ -102,10 +113,10 @@ import { Modal } from "./components/Modal.js";
     const title = document.createElement("h1");
     title.innerHTML = "To Do List";
     title.classList.add("app-title");
-
     const header = document.createElement("div");
     header.classList.add("header");
-    header.append(searchInput, button);
+    const widgets = Widgets();
+    header.append(widgets, searchInput, button);
     div.append(title, header, list);
 
     return div;

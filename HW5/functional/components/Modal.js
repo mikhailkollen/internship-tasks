@@ -1,9 +1,10 @@
 import { tagLabels } from "../utils.js";
 import { updateLocalStorage } from "../utils.js";
+import { addTaskToTheServer } from "../utils.js";
+import { uniqueId } from "../utils.js";
 
 export function Modal({ children }) {
   const { setAllTasks, allTasks } = children;
-
   const modal = document.createElement("form");
   modal.classList.add("modal");
   modal.addEventListener("submit", (e) => {
@@ -123,7 +124,10 @@ export function Modal({ children }) {
     const selectedTag = document.querySelector(
       'input[name="tags"]:checked'
     ).value;
+    const id = uniqueId();
+
     const newTask = {
+      id: id,
       title: inputValue,
       status: null,
       tag: selectedTag,
@@ -133,11 +137,8 @@ export function Modal({ children }) {
     setAllTasks(newTasks);
     closeModal();
     updateLocalStorage(newTasks);
+    addTaskToTheServer(newTask);
   }
-
-  // function updateLocalStorage(newTasks) {
-  //   localStorage.setItem("tasks", JSON.stringify(newTasks));
-  // }
 
   return modal;
 }
