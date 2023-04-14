@@ -1,12 +1,11 @@
 import { tagLabels, checkIfToday, checkIfTomorrow } from "../utils.js";
 
-export const ListItem = ({ task }) => {
+export const ListItem = ({ task, isModalTask }) => {
+  console.log(isModalTask);
   const li = document.createElement("li");
   li.setAttribute("data-value", `${task.title}`);
   li.setAttribute("data-id", `${task.id}`);
   const checkbox = document.createElement("input");
-  checkbox.setAttribute("type", "checkbox");
-  checkbox.setAttribute("class", "list-item-checkbox");
 
   const label = document.createElement("label");
   label.setAttribute("class", "list-item");
@@ -44,11 +43,17 @@ export const ListItem = ({ task }) => {
   }
   const tagDateContainer = document.createElement("div");
   tagDateContainer.classList.add("task-tag-container");
-  tagDateContainer.append(tag, deadline);
+
+  tagDateContainer.append(tag);
 
   tagContainer.append(taskTitle, tagDateContainer);
-
-  label.append(checkbox, tagContainer);
+  if (!isModalTask) {
+    tagDateContainer.append(deadline);
+    checkbox.setAttribute("type", "checkbox");
+    checkbox.setAttribute("class", "list-item-checkbox");
+    label.append(checkbox);
+  }
+  label.append(tagContainer);
   label.classList.add("list-item-label");
   li.append(label);
   if (task.status) {

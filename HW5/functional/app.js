@@ -3,6 +3,13 @@ import { Button } from "./components/Button.js";
 import { SearchInput } from "./components/Search.js";
 import { Modal } from "./components/Modal.js";
 import { Widgets } from "./components/Widgets.js";
+import {
+  checkIfToday,
+  addOverlay,
+  checkIfModalShownToday,
+  setModalShown,
+} from "./utils.js";
+import { ListItem } from "./components/Item.js";
 
 (function () {
   let state = undefined;
@@ -47,14 +54,51 @@ import { Widgets } from "./components/Widgets.js";
     const [allTasks, setAllTasks] = useState([]);
 
     const getTasksFromTheServer = async () => {
-      const response = await fetch("http://localhost:3004/tasks/");
+      const response = await fetch("http://localhost:3004/tasks/", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        cache: "no-cache",
+      });
       const tasks = await response.json();
-      // await localStorage.setItem("tasks", JSON.stringify(tasks));
-      setAllTasks(tasks);
-      console.log(tasks);
-      console.log(allTasks);
+      if (tasks) {
+        setAllTasks(tasks);
+      }
       return tasks;
     };
+
+    // check if there are planned tasks for today
+    const todayTasks = allTasks.filter((task) => {
+      if (task.status !== "completed") {
+        return checkIfToday(task.date);
+      }
+    });
+    if (todayTasks.length && checkIfModalShownToday() === false) {
+      const overlay = addOverlay();
+      const todayTasksModal = document.createElement("div");
+      todayTasksModal.classList.add("today-tasks-modal", "modal");
+      const todayTasksModalTitle = document.createElement("h2");
+      todayTasksModalTitle.classList.add("list-title");
+      todayTasksModalTitle.innerHTML = "Good morning";
+      const todayTasksModalList = document.createElement("ul");
+      todayTasksModalList.classList.add("today-tasks-modal-list");
+      todayTasksModal.append(todayTasksModalTitle, todayTasksModalList);
+      todayTasks.forEach((task) => {
+        const todayTasksModalListItem = ListItem({ task, isModalTask: true });
+        todayTasksModalList.append(todayTasksModalListItem);
+      });
+      const todayTasksModalButton = Button({
+        text: "OK",
+        onClick: () => {
+          todayTasksModal.remove();
+          overlay.remove();
+        },
+      });
+      todayTasksModal.append(todayTasksModalButton);
+      document.body.append(todayTasksModal);
+      setModalShown();
+    }
 
     window.addEventListener("load", async () => {
       await getTasksFromTheServer();
@@ -110,14 +154,15 @@ import { Widgets } from "./components/Widgets.js";
       });
       div.append(modal);
     }
-    const title = document.createElement("h1");
-    title.innerHTML = "To Do List";
-    title.classList.add("app-title");
+
     const header = document.createElement("div");
     header.classList.add("header");
+    const searchContainer = document.createElement("div");
+    searchContainer.classList.add("search-container");
+    searchContainer.append(searchInput, button);
     const widgets = Widgets();
-    header.append(widgets, searchInput, button);
-    div.append(title, header, list);
+    header.append(widgets, searchContainer);
+    div.append(header, list);
 
     return div;
   }

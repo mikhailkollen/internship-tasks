@@ -23,7 +23,7 @@ export const List = ({
   list.classList.add(listClassName);
 
   const taskElements = listItems.map((task) => {
-    const li = ListItem({ task });
+    const li = ListItem({ task, isModalTask: false });
     const checkbox = li.querySelector("input");
     const button = Button({
       onClick: () => {

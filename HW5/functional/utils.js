@@ -69,3 +69,35 @@ export const updateTaskOnTheServer = async (task) => {
   console.log(data);
   return data;
 };
+
+export const addOverlay = () => {
+  const overlay = document.createElement("div");
+  overlay.classList.add("overlay");
+  document.body.append(overlay);
+  overlay.addEventListener("click", () => {
+    overlay.remove();
+    document.querySelector(".modal").remove();
+  });
+  return overlay;
+};
+
+export const checkIfModalShownToday = () => {
+  const localStorageModal = localStorage.getItem("todayTasksShown");
+  if (!localStorageModal) {
+    return false;
+  }
+  const today = new Date();
+  const todayDate = `${today.getDate()}.${
+    today.getMonth() + 1
+  }.${today.getFullYear()}`;
+  console.log(localStorageModal === todayDate);
+  return localStorageModal === todayDate;
+};
+
+export const setModalShown = (modal) => {
+  const today = new Date();
+  const todayDate = `${today.getDate()}.${
+    today.getMonth() + 1
+  }.${today.getFullYear()}`;
+  localStorage.setItem("todayTasksShown", todayDate);
+};
