@@ -70,7 +70,7 @@ import { TodayTasksModal } from "./components/TodayTasksModal.js";
     };
 
     const todayTasks = allTasks.filter((task) => {
-      if (task.status !== "completed") {
+      if (!task.isCompleted) {
         return checkIfToday(task.date);
       }
     });

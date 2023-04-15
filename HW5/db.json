@@ -3,58 +3,72 @@
     {
       "id": "lgetyufo-t5jr3d",
       "title": "hi there here is an item with id",
-      "status": null,
+      "isCompleted": true,
       "tag": "health",
       "date": "2023-04-13T00:00:00.000Z"
     },
     {
       "id": "lgetzgef-gmod5f",
       "title": "hello again",
-      "status": null,
+      "isCompleted": false,
       "tag": "health",
       "date": "2023-04-14T00:00:00.000Z"
     },
     {
-      "id": "lgev9d1b-tc1xbu",
-      "title": "hello",
-      "status": null,
-      "tag": "other",
-      "date": "2023-04-15T00:00:00.000Z"
-    },
-    {
       "id": "lgf2swek-ytvus8",
       "title": "task task task",
-      "status": null,
+      "isCompleted": true,
       "tag": "other",
       "date": "2023-04-14T00:00:00.000Z"
     },
     {
       "id": "lgg7tdoy-v0s710",
       "title": "hello",
-      "status": "completed",
+      "isCompleted": false,
       "tag": "health",
       "date": "2023-04-14T00:00:00.000Z"
     },
     {
       "id": "lgggzjx3-umczh8",
       "title": "A task with an incredibly long title A task with an incredibly long title A task with an incredibly long title A task with an incredibly long title",
-      "status": null,
+      "isCompleted": true,
       "tag": "health",
       "date": "2023-04-14T00:00:00.000Z"
     },
     {
       "id": "lggi0fpe-dzh21l",
       "title": "here is another task from the deployed website",
-      "status": "completed",
+      "isCompleted": false,
       "tag": "other",
       "date": "2023-04-15T00:00:00.000Z"
     },
     {
       "id": "lgi3qenu-vs2yl4",
       "title": "here is another task here is another task",
-      "status": null,
+      "isCompleted": false,
       "tag": "home",
       "date": "2023-04-15T00:00:00.000Z"
+    },
+    {
+      "id": "lgi4za8n-0ytdqk",
+      "title": "one more task",
+      "isCompleted": true,
+      "tag": "home",
+      "date": "2023-04-15T00:00:00.000Z"
+    },
+    {
+      "id": "lgi52d08-kjkinb",
+      "title": "more tasks",
+      "isCompleted": true,
+      "tag": "health",
+      "date": "2023-04-15T00:00:00.000Z"
+    },
+    {
+      "id": "lgi5c93b-v1xyx2",
+      "title": "let's add some more tasks",
+      "isCompleted": true,
+      "tag": "home",
+      "date": "2023-04-20T00:00:00.000Z"
     }
   ]
 }

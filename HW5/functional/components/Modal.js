@@ -129,7 +129,7 @@ export function Modal({ children }) {
     const newTask = {
       id: id,
       title: inputValue,
-      status: null,
+      isCompleted: false,
       tag: selectedTag,
       date: dateValue,
     };

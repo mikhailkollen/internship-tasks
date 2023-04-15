@@ -37,7 +37,7 @@ export const List = ({
       className: "delete-button",
     });
     li.append(button);
-    if (task.status === "completed") {
+    if (task.isCompleted === true) {
       button.style.display = "none";
     }
 
@@ -50,7 +50,7 @@ export const List = ({
         unfinishedTasks.append(li);
         const updatedLocalStorage = allTasks.map((item) => {
           if (item.title === task.title) {
-            item.status = null;
+            item.isCompleted = false;
           }
           return item;
         });
@@ -62,7 +62,7 @@ export const List = ({
             tag.style.color = tagLabels[i].color;
           }
         }
-        updateTaskOnTheServer({ ...task, status: null });
+        updateTaskOnTheServer({ ...task, isCompleted: false });
 
         updateLocalStorage(updatedLocalStorage);
       } else {
@@ -71,7 +71,7 @@ export const List = ({
         completedTasks.append(li);
         const updatedLocalStorage = allTasks.map((item) => {
           if (item.title === task.title) {
-            item.status = "completed";
+            item.isCompleted = true;
           }
           return item;
         });
@@ -79,7 +79,7 @@ export const List = ({
         let tag = li.querySelector(".tag-label");
         tag.style.backgroundColor = "#F5F5F5";
         tag.style.color = "#838383";
-        updateTaskOnTheServer({ ...task, status: "completed" });
+        updateTaskOnTheServer({ ...task, isCompleted: true });
         updateLocalStorage(updatedLocalStorage);
       }
     });

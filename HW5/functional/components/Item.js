@@ -55,7 +55,7 @@ export const ListItem = ({ task, isModalTask }) => {
   label.append(tagContainer);
   label.classList.add("list-item-label");
   li.append(label);
-  if (task.status) {
+  if (task.isCompleted) {
     checkbox.setAttribute("checked", "true");
     li.classList.add("completed");
     tag.style.backgroundColor = "#F5F5F5";
