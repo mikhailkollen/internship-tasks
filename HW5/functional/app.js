@@ -10,6 +10,7 @@ import {
   setModalShown,
 } from "./utils.js";
 import { ListItem } from "./components/Item.js";
+import { TodayTasksModal } from "./components/TodayTasksModal.js";
 
 (function () {
   let state = undefined;
@@ -68,36 +69,13 @@ import { ListItem } from "./components/Item.js";
       return tasks;
     };
 
-    // check if there are planned tasks for today
     const todayTasks = allTasks.filter((task) => {
       if (task.status !== "completed") {
         return checkIfToday(task.date);
       }
     });
     if (todayTasks.length && checkIfModalShownToday() === false) {
-      const overlay = addOverlay();
-      const todayTasksModal = document.createElement("div");
-      todayTasksModal.classList.add("today-tasks-modal", "modal");
-      const todayTasksModalTitle = document.createElement("h2");
-      todayTasksModalTitle.classList.add("list-title");
-      todayTasksModalTitle.innerHTML = "Good morning";
-      const todayTasksModalList = document.createElement("ul");
-      todayTasksModalList.classList.add("today-tasks-modal-list");
-      todayTasksModal.append(todayTasksModalTitle, todayTasksModalList);
-      todayTasks.forEach((task) => {
-        const todayTasksModalListItem = ListItem({ task, isModalTask: true });
-        todayTasksModalList.append(todayTasksModalListItem);
-      });
-      const todayTasksModalButton = Button({
-        text: "OK",
-        onClick: () => {
-          todayTasksModal.remove();
-          overlay.remove();
-        },
-      });
-      todayTasksModal.append(todayTasksModalButton);
-      document.body.append(todayTasksModal);
-      setModalShown();
+      TodayTasksModal(todayTasks);
     }
 
     window.addEventListener("load", async () => {

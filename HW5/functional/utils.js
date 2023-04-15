@@ -90,7 +90,6 @@ export const checkIfModalShownToday = () => {
   const todayDate = `${today.getDate()}.${
     today.getMonth() + 1
   }.${today.getFullYear()}`;
-  console.log(localStorageModal === todayDate);
   return localStorageModal === todayDate;
 };
 

@@ -38,7 +38,7 @@
     {
       "id": "lgggzjx3-umczh8",
       "title": "A task with an incredibly long title A task with an incredibly long title A task with an incredibly long title A task with an incredibly long title",
-      "status": "completed",
+      "status": null,
       "tag": "health",
       "date": "2023-04-14T00:00:00.000Z"
     },
@@ -47,6 +47,13 @@
       "title": "here is another task from the deployed website",
       "status": "completed",
       "tag": "other",
+      "date": "2023-04-15T00:00:00.000Z"
+    },
+    {
+      "id": "lgi3qenu-vs2yl4",
+      "title": "here is another task here is another task",
+      "status": null,
+      "tag": "home",
       "date": "2023-04-15T00:00:00.000Z"
     }
   ]
