@@ -36,7 +36,7 @@ export const uniqueId = () => {
 };
 
 export const addTaskToTheServer = async (task) => {
-  const response = await fetch("http://localhost:3004/tasks", {
+  const response = await fetch("https://tough-bee-bonnet.cyclic.app/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
