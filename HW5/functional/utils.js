@@ -58,13 +58,16 @@ export const deleteTaskFromTheServer = async (id) => {
 };
 
 export const updateTaskOnTheServer = async (task) => {
-  const response = await fetch(`http://localhost:3004/tasks/${task.id}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(task),
-  });
+  const response = await fetch(
+    `https://tough-bee-bonnet.cyclic.app/${task.id}`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(task),
+    }
+  );
   const data = await response.json();
   console.log(data);
   return data;
