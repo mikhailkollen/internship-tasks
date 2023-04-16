@@ -136,6 +136,7 @@ export function Modal({ children }) {
 
     //  get task id from the server response
     addTaskToTheServer(newTask).then((response) => {
+      console.log(response._id);
       newTask.id = response._id;
     });
 
