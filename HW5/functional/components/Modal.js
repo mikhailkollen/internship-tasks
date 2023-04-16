@@ -127,17 +127,22 @@ export function Modal({ children }) {
     const id = uniqueId();
 
     const newTask = {
-      id: id,
+      // id: id,
       title: inputValue,
       isCompleted: false,
       tag: selectedTag,
       date: dateValue,
     };
+
+    //  get task id from the server response
+    addTaskToTheServer(newTask).then((response) => {
+      newTask.id = response._id;
+    });
+
     const newTasks = allTasks ? [...allTasks, newTask] : [newTask];
     setAllTasks(newTasks);
     closeModal();
     updateLocalStorage(newTasks);
-    addTaskToTheServer(newTask);
   }
 
   return modal;
