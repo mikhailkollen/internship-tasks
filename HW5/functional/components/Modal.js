@@ -1,7 +1,6 @@
 import { tagLabels } from "../utils.js";
 import { updateLocalStorage } from "../utils.js";
 import { addTaskToTheServer } from "../utils.js";
-import { uniqueId } from "../utils.js";
 
 export function Modal({ children }) {
   const { setAllTasks, allTasks } = children;
@@ -124,10 +123,8 @@ export function Modal({ children }) {
     const selectedTag = document.querySelector(
       'input[name="tags"]:checked'
     ).value;
-    const id = uniqueId();
 
     const newTask = {
-      // id: id,
       title: inputValue,
       isCompleted: false,
       tag: selectedTag,
@@ -136,7 +133,7 @@ export function Modal({ children }) {
 
     //  get task id from the server response
     addTaskToTheServer(newTask).then((response) => {
-      newTask.id = response._id;
+      newTask._id = response._id;
       console.log(newTask);
       const newTasks = allTasks ? [...allTasks, newTask] : [newTask];
       setAllTasks(newTasks);

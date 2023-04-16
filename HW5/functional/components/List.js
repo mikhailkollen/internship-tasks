@@ -31,7 +31,7 @@ export const List = ({
         setAllTasks(newTasks);
         updateLocalStorage(newTasks);
 
-        deleteTaskFromTheServer(task.id);
+        deleteTaskFromTheServer(task._id);
         li.remove();
       },
       className: "delete-button",
