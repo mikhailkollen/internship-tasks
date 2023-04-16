@@ -49,7 +49,7 @@ export const addTaskToTheServer = async (task) => {
 };
 
 export const deleteTaskFromTheServer = async (id) => {
-  const response = await fetch(`http://localhost:3004/tasks/${id}`, {
+  const response = await fetch(`https://tough-bee-bonnet.cyclic.app/${id}`, {
     method: "DELETE",
   });
   const data = await response.json();
