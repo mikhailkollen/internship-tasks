@@ -3,7 +3,7 @@ import { tagLabels, checkIfToday, checkIfTomorrow } from "../utils.js";
 export const ListItem = ({ task, isModalTask }) => {
   const li = document.createElement("li");
   li.setAttribute("data-value", `${task.title}`);
-  li.setAttribute("data-id", `${task.id}`);
+  li.setAttribute("data-id", `${task._id}`);
   const checkbox = document.createElement("input");
 
   const label = document.createElement("label");
