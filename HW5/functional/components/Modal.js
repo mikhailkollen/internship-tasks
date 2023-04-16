@@ -137,6 +137,7 @@ export function Modal({ children }) {
     //  get task id from the server response
     addTaskToTheServer(newTask).then((response) => {
       newTask.id = response._id;
+      console.log(newTask);
       const newTasks = allTasks ? [...allTasks, newTask] : [newTask];
       setAllTasks(newTasks);
       closeModal();
