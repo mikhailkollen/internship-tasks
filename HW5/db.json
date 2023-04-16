@@ -3,7 +3,7 @@
     {
       "id": "lgetyufo-t5jr3d",
       "title": "hi there here is an item with id",
-      "isCompleted": true,
+      "isCompleted": false,
       "tag": "health",
       "date": "2023-04-13T00:00:00.000Z"
     },
@@ -17,7 +17,7 @@
     {
       "id": "lgf2swek-ytvus8",
       "title": "task task task",
-      "isCompleted": true,
+      "isCompleted": false,
       "tag": "other",
       "date": "2023-04-14T00:00:00.000Z"
     },
@@ -52,21 +52,21 @@
     {
       "id": "lgi4za8n-0ytdqk",
       "title": "one more task",
-      "isCompleted": true,
+      "isCompleted": false,
       "tag": "home",
       "date": "2023-04-15T00:00:00.000Z"
     },
     {
       "id": "lgi52d08-kjkinb",
       "title": "more tasks",
-      "isCompleted": true,
+      "isCompleted": false,
       "tag": "health",
       "date": "2023-04-15T00:00:00.000Z"
     },
     {
       "id": "lgi5c93b-v1xyx2",
       "title": "let's add some more tasks",
-      "isCompleted": true,
+      "isCompleted": false,
       "tag": "home",
       "date": "2023-04-20T00:00:00.000Z"
     }

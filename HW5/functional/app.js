@@ -54,6 +54,25 @@ import { TodayTasksModal } from "./components/TodayTasksModal.js";
     const localStorageTasks = localStorage.getItem("tasks");
     const [allTasks, setAllTasks] = useState([]);
 
+    let tasksFromAnotherAPI = [];
+
+    const getTasksFromAnotherAPI = async () => {
+      const response = await fetch("https://tough-bee-bonnet.cyclic.app/", {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        cache: "no-cache",
+      });
+      const tasks = await response.json();
+      if (tasks) {
+        tasksFromAnotherAPI = tasks;
+        console.log(tasksFromAnotherAPI);
+      }
+      return tasks;
+    };
+    getTasksFromAnotherAPI();
+
     const getTasksFromTheServer = async () => {
       const response = await fetch("http://localhost:3004/tasks/", {
         method: "GET",
