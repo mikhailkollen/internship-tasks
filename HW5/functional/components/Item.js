@@ -1,7 +1,6 @@
 import { tagLabels, checkIfToday, checkIfTomorrow } from "../utils.js";
 
 export const ListItem = ({ task, isModalTask }) => {
-  console.log(task);
   const li = document.createElement("li");
   li.setAttribute("data-value", `${task.title}`);
   li.setAttribute("data-id", `${task._id}`);

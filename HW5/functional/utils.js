@@ -58,7 +58,6 @@ export const deleteTaskFromTheServer = async (id) => {
 };
 
 export const updateTaskOnTheServer = async (task) => {
-  console.log(task._id);
   const response = await fetch(
     `https://tough-bee-bonnet.cyclic.app/${task._id}`,
     {
