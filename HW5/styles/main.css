@@ -1,0 +1,428 @@
+body,
+html {
+  margin: 0;
+  padding: 0;
+}
+* {
+  box-sizing: border-box;
+}
+
+.app-title {
+  font-family: "Nunito", sans-serif;
+  color: #1d1d1d;
+  font-size: 32px;
+  font-weight: 700;
+  margin: 44px 0;
+  align-self: flex-start;
+}
+
+body {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+#functional {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.app {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+button {
+  padding: 16px 32px;
+  background: rgba(60, 134, 244, 0.15);
+  border-radius: 12px;
+  color: #0053cf;
+  font-weight: 800;
+  font-family: "Nunito", sans-serif;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.add-task-button {
+  margin-left: 40px;
+  transition: all 0.6s ease-in-out;
+}
+
+.list-item {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 70%;
+  border-radius: 12px;
+  font-family: "Nunito", sans-serif;
+  color: #1d1d1d;
+  font-size: 18px;
+  font-weight: 400;
+}
+
+input[type="text"] {
+  width: calc(100% - 192px);
+  padding: 16px 21px;
+  border-radius: 12px;
+  background: #f5f5f5;
+  border: 1px solid #d2d2d2;
+  font-family: "Nunito", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  line-height: 20px;
+}
+
+input::placeholder {
+  color: #838383;
+  content: "Search Task";
+  font-family: "Nunito", sans-serif;
+}
+
+.modal {
+  position: fixed;
+  top: 25%;
+  left: calc(50% - 262px);
+  width: 524px;
+  height: 371px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 24px;
+  /* border: 1px solid #d2d2d2; */
+  box-shadow: 1px 2px 20px 1px #d2d2d28b;
+  z-index: 2;
+  padding: 24px 32px;
+}
+
+.all-lists {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  align-self: flex-start;
+  margin-top: 42px;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 12px;
+  margin: 20px 0;
+}
+
+.completed span {
+  color: #838383;
+}
+
+label {
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+input[type="checkbox"] {
+  border: 2px solid #d3d3d3;
+  margin-right: 20px;
+  appearance: none;
+  background-image: url("../assets/check-icon.svg");
+  width: 21px;
+  height: 21px;
+  border-radius: 4px;
+  cursor: pointer;
+  background-size: 1200%;
+  background-repeat: no-repeat;
+  transition: background 0.3s ease-in-out;
+}
+
+input[type="checkbox"]:checked {
+  padding: 6px;
+
+  background-repeat: no-repeat;
+  background-color: #d3d3d3;
+  background-position: 40% 60%;
+  background-size: auto;
+  background-repeat: no-repeat;
+  transition: background 0.3s ease-in-out;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.list-title {
+  font-family: "Nunito", sans-serif;
+  color: #000000;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.modal-title {
+  font-family: "Nunito", sans-serif;
+  color: #000000;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 38px;
+}
+
+.delete-button {
+  width: 16px;
+  height: 16px;
+  padding: 0;
+  transition: all 0.3s ease-in-out;
+}
+
+.delete-button svg {
+  width: 100%;
+  height: 100%;
+}
+
+.delete-button svg path {
+  transition: all 0.3s ease-in-out;
+}
+
+.delete-button:focus {
+  outline: none;
+}
+
+.add-task-button:focus {
+  outline: none;
+  background-color: #0053cf;
+  color: #ffffff;
+}
+
+.delete-button:focus svg path {
+  fill: #0053cf;
+}
+
+.delete-button:active svg path {
+  fill: #0053cf;
+}
+
+input[type="checkbox"]:checked:focus {
+  outline: none;
+  border: 2px solid #d3d3d3;
+  background-image: none;
+  background-color: #ffffff;
+}
+input[type="checkbox"]:focus {
+  outline: none;
+  border: none;
+  background-color: #3c86f4;
+  background-image: url("../assets/check-icon.svg");
+  background-position: 45% 60%;
+  background-size: 70%;
+  background-repeat: no-repeat;
+}
+
+.list-item div {
+  display: flex;
+  align-items: center;
+}
+
+.modal-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 92px;
+  gap: 10px;
+}
+
+.cancel-button {
+  background-color: #ffffff;
+  padding: 16px 78px;
+  transition: all 0.3s ease-in-out;
+}
+
+.cancel-button:focus {
+  outline: none;
+  background-color: #3c86f4;
+  color: #ffffff;
+}
+
+.add-button {
+  background: #d3d3d3;
+  padding: 16px 78px;
+  color: #ffffff;
+  transition: background 0.6s ease-in-out;
+}
+
+.add-button-active {
+  outline-color: #1d1d1d;
+  background: #3c86f4;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  z-index: 1;
+}
+
+.list-item-tag-container {
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-self: flex-start;
+  font-size: 12px;
+  font-family: "Nunito", sans-serif;
+}
+
+.tag-container {
+  width: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-direction: row;
+  font-size: 12px;
+  font-family: "Nunito", sans-serif;
+}
+
+#modal-input {
+  width: 100%;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+.tag-label {
+  display: inline-block;
+  padding: 2px 8px;
+  background-color: #ddd;
+  color: #555;
+  cursor: pointer;
+  border-radius: 6px;
+  margin-right: 10px;
+  font-weight: 500;
+  transition: border 0.6s ease-in-out;
+}
+
+.task-title {
+  font-family: "Nunito", sans-serif;
+  color: #1d1d1d;
+  font-size: 18px;
+  font-weight: 400;
+  margin-bottom: 9px;
+  text-align: left;
+  align-self: flex-start;
+}
+
+.deadline {
+  font-family: "Nunito", sans-serif;
+  color: #838383;
+  font-size: 12px;
+  font-weight: 500;
+}
+
+li .tag-label {
+  font-weight: 600;
+}
+
+.task-tag-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+}
+
+.tag-date-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-top: 18px;
+}
+
+input[type="date"] {
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: 2px solid rgba(60, 134, 244, 0.6);
+  text-align: center;
+  font-family: "Nunito", sans-serif;
+  font-size: 16px;
+  position: relative;
+}
+
+input[type="date"]:focus {
+  outline: none;
+  border: 2px solid #3c86f4;
+}
+
+input[type="text"]:focus {
+  outline: none;
+  border: 1px solid #3c86f4;
+}
+
+::-webkit-calendar-picker-indicator {
+  position: absolute;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.completed .task-title {
+  color: #838383;
+}
+
+@media only screen and (min-width: 1080px) {
+  input[type="checkbox"]:checked:hover {
+    border: 2px solid #d3d3d3;
+    background-image: none;
+    background-color: #ffffff;
+  }
+  input[type="checkbox"]:hover {
+    border: none;
+    background-color: #3c86f4;
+    background-image: url("../assets/check-icon.svg");
+    background-position: 45% 60%;
+    background-size: 70%;
+    background-repeat: no-repeat;
+  }
+
+  .add-task-button:hover {
+    background-color: rgba(60, 134, 244, 0.35);
+    color: #0053cf;
+  }
+
+  .delete-button:hover svg path {
+    fill: #3c86f4;
+  }
+
+  .cancel-button:hover {
+    background-color: #3c86f4;
+    color: #ffffff;
+  }
+}
