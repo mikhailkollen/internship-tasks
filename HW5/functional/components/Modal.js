@@ -1,6 +1,5 @@
 import { tagLabels } from "../utils.js";
-import { updateLocalStorage } from "../utils.js";
-import { addTaskToTheServer } from "../utils.js";
+import { addTaskToTheServer, updateTasks } from "../utils.js";
 
 export function Modal({ children }) {
   const { setAllTasks, allTasks } = children;
@@ -134,9 +133,8 @@ export function Modal({ children }) {
     addTaskToTheServer(newTask).then((response) => {
       newTask._id = response._id;
       const newTasks = allTasks ? [...allTasks, newTask] : [newTask];
-      setAllTasks(newTasks);
+      updateTasks(newTasks, setAllTasks);
       closeModal();
-      updateLocalStorage(newTasks);
     });
   }
 

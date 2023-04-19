@@ -8,6 +8,8 @@ import {
   addOverlay,
   checkIfModalShownToday,
   setModalShown,
+  updateTasks,
+  showTodayTasks,
 } from "./utils.js";
 import { ListItem } from "./components/Item.js";
 import { TodayTasksModal } from "./components/TodayTasksModal.js";
@@ -26,6 +28,7 @@ import { TodayTasksModal } from "./components/TodayTasksModal.js";
 
     function setValue(newValue) {
       state = newValue;
+
       renderApp();
     }
 
@@ -51,7 +54,6 @@ import { TodayTasksModal } from "./components/TodayTasksModal.js";
    */
 
   function App() {
-    const localStorageTasks = localStorage.getItem("tasks");
     const [allTasks, setAllTasks] = useState([]);
 
     const getTasksFromTheServer = async () => {
@@ -61,22 +63,15 @@ import { TodayTasksModal } from "./components/TodayTasksModal.js";
           "Content-Type": "application/json",
         },
         cache: "no-cache",
+        cors: "no-cors",
       });
       const tasks = await response.json();
       if (tasks) {
-        setAllTasks(tasks);
+        updateTasks(tasks, setAllTasks);
+        showTodayTasks(tasks, TodayTasksModal);
       }
       return tasks;
     };
-
-    const todayTasks = allTasks.filter((task) => {
-      if (!task.isCompleted) {
-        return checkIfToday(task.date);
-      }
-    });
-    if (todayTasks.length && checkIfModalShownToday() === false) {
-      TodayTasksModal(todayTasks);
-    }
 
     window.addEventListener("load", async () => {
       await getTasksFromTheServer();

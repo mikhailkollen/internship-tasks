@@ -96,10 +96,28 @@ export const checkIfModalShownToday = () => {
   return localStorageModal === todayDate;
 };
 
-export const setModalShown = (modal) => {
+export const setModalShown = () => {
   const today = new Date();
   const todayDate = `${today.getDate()}.${
     today.getMonth() + 1
   }.${today.getFullYear()}`;
   localStorage.setItem("todayTasksShown", todayDate);
+};
+
+export const showTodayTasks = (tasks, TodayTasksModal) => {
+  const todayTasks = tasks.filter((task) => {
+    if (!task.isCompleted) {
+      return checkIfToday(task.date);
+    }
+  });
+  if (todayTasks.length && checkIfModalShownToday() === false) {
+    TodayTasksModal(todayTasks);
+  } else {
+    setModalShown();
+  }
+};
+
+export const updateTasks = (tasks, setAllTasks) => {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+  setAllTasks(tasks);
 };
