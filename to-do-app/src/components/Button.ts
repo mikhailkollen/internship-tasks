@@ -1,11 +1,11 @@
-export function Button({ text, onClick, className }) {
+import { ButtonProps } from "../types";
+
+export function Button({ text, onClick, className }: ButtonProps): HTMLButtonElement {
   const button = document.createElement("button");
-  button.classList.add(className);
-  if (text) {
-    button.innerHTML = text;
-  } else {
-    button.innerHTML = "";
+  if (className) {
+    button.classList.add(className);
   }
+  button.innerHTML = text ? text : "";
 
   button.onclick = onClick;
   if (className === "delete-button") {

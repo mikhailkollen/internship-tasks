@@ -1,21 +1,15 @@
-import { AllLists } from "./components/AllLists.js";
-import { Button } from "./components/Button.js";
-import { SearchInput } from "./components/Search.js";
-import { Modal } from "./components/Modal.js";
-import { Widgets } from "./components/Widgets.js";
-import {
-  checkIfToday,
-  addOverlay,
-  checkIfModalShownToday,
-  setModalShown,
-  updateTasks,
-  showTodayTasks,
-} from "./utils.js";
-import { ListItem } from "./components/Item.js";
-import { TodayTasksModal } from "./components/TodayTasksModal.js";
+import { AllLists } from "./components/AllLists";
+import { Button } from "./components/Button";
+import { SearchInput } from "./components/Search";
+import { Modal } from "./components/Modal";
+import { WeatherWidget } from "./components/WeatherWidget";
+import { updateTasks, showTodayTasks } from "./utils";
+import { TodayTasksModal } from "./components/TodayTasksModal";
+import "./styles/css-reset.css";
+import "./styles/index.css";
 
 (function () {
-  let state = undefined;
+  let state: any = undefined;
 
   /**
    * Global application state
@@ -23,17 +17,18 @@ import { TodayTasksModal } from "./components/TodayTasksModal.js";
    * @param {T} initialValue
    * @returns {[T, function(T): void]}
    */
-  function useState(initialValue) {
+
+
+  function useState(initialValue: any) {
     state = state || initialValue;
-
-    function setValue(newValue) {
+    function setValue(newValue: any) {
       state = newValue;
-
       renderApp();
     }
-
     return [state, setValue];
   }
+
+
 
   /**
    * Functional component for the list
@@ -53,9 +48,8 @@ import { TodayTasksModal } from "./components/TodayTasksModal.js";
    * @returns {HTMLDivElement} - The app container
    */
 
-  function App() {
+  function App(): HTMLElement {
     const [allTasks, setAllTasks] = useState([]);
-
     const getTasksFromTheServer = async () => {
       const response = await fetch("https://tough-bee-bonnet.cyclic.app/", {
         method: "GET",
@@ -63,7 +57,6 @@ import { TodayTasksModal } from "./components/TodayTasksModal.js";
           "Content-Type": "application/json",
         },
         cache: "no-cache",
-        cors: "no-cors",
       });
       const tasks = await response.json();
       if (tasks) {
@@ -80,7 +73,7 @@ import { TodayTasksModal } from "./components/TodayTasksModal.js";
     const div = document.createElement("div");
     div.classList.add("app");
     const modal = Modal({ children: { setAllTasks, allTasks } });
-    const list = AllLists({ allTasks, setAllTasks });
+    const list = AllLists({ children: { allTasks, setAllTasks } });
     const button = Button({
       text: "+ New Task",
       onClick: () => addItem(modal),
@@ -90,38 +83,25 @@ import { TodayTasksModal } from "./components/TodayTasksModal.js";
       onInput: filterItems,
     });
 
-    function filterItems(value) {
+    function filterItems(value: string) {
       const items = document.querySelectorAll("li");
 
-      // search between not completed items
-      const unfinishedItems = [...items].filter(
-        (item) => !item.classList.contains("completed")
-      );
-      unfinishedItems.forEach((item) => {
-        if (item.dataset.value.toLowerCase().includes(value.toLowerCase())) {
+      items.forEach((item: HTMLElement) => {
+        if (item.dataset && item.dataset.value && item.dataset.value.toLowerCase().includes(value.toLowerCase())) {
           item.style.display = "flex";
         } else {
           item.style.display = "none";
         }
       });
-
-      // search between all items
-      // items.forEach((item) => {
-      //   if (item.dataset.value.toLowerCase().includes(value.toLowerCase())) {
-      //     item.style.display = "flex";
-      //   } else {
-      //     item.style.display = "none";
-      //   }
-      // });
     }
 
-    function addItem(modal) {
+    function addItem(modal: HTMLElement) {
       const overlay = document.createElement("div");
       overlay.classList.add("overlay");
       document.body.append(overlay);
       overlay.addEventListener("click", () => {
         overlay.remove();
-        const modalInput = document.querySelector("#modal-input");
+        const modalInput = document.querySelector("#modal-input") as HTMLInputElement;
         modalInput.value = "";
         modal.remove();
       });
@@ -133,8 +113,8 @@ import { TodayTasksModal } from "./components/TodayTasksModal.js";
     const searchContainer = document.createElement("div");
     searchContainer.classList.add("search-container");
     searchContainer.append(searchInput, button);
-    const widgets = Widgets();
-    header.append(widgets, searchContainer);
+    const weatherWidget = WeatherWidget();
+    header.append(weatherWidget, searchContainer);
     div.append(header, list);
 
     return div;
@@ -145,7 +125,7 @@ import { TodayTasksModal } from "./components/TodayTasksModal.js";
    * On change whole app is re-rendered.
    */
   function renderApp() {
-    const appContainer = document.getElementById("functional");
+    const appContainer = document.getElementById("functional") as HTMLElement;
     appContainer.innerHTML = "";
     appContainer.append(App());
   }

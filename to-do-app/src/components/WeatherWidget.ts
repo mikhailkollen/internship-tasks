@@ -1,4 +1,8 @@
+import "../styles/WeatherWidget.css";
+
 export const WeatherWidget = () => {
+  const widgetsContainer = document.createElement("div");
+  widgetsContainer.classList.add("widgets-container");
   const weatherWidget = document.createElement("div");
   weatherWidget.classList.add("weather-widget");
 
@@ -47,6 +51,9 @@ export const WeatherWidget = () => {
     return weatherData;
   };
   getWeatherData();
-
-  return weatherWidget;
+  const title = document.createElement("h1");
+  title.innerHTML = "To Do List";
+  title.classList.add("app-title");
+  widgetsContainer.append(title, weatherWidget);
+  return widgetsContainer;
 };

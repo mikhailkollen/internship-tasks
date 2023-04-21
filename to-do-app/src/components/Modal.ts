@@ -1,7 +1,9 @@
-import { tagLabels } from "../utils.js";
-import { addTaskToTheServer, updateTasks } from "../utils.js";
+import { tagLabels } from "../utils";
+import { addTaskToTheServer, updateTasks } from "../utils";
+import { StateProps, Task } from "../types";
+import "../styles/Modal.css";
 
-export function Modal({ children }) {
+export function Modal({ children }: StateProps) {
   const { setAllTasks, allTasks } = children;
   const modal = document.createElement("form");
   modal.classList.add("modal");
@@ -42,25 +44,30 @@ export function Modal({ children }) {
       label.style.borderStyle = "solid";
     }
     radio.addEventListener("change", (e) => {
-      const clickedLabel = e.target.parentElement;
+      let clickedLabel = (e.target as HTMLElement).parentElement;
+
       const otherLabels = Array.from(
         document.querySelectorAll(".tag-label")
-      ).filter((label) => label !== clickedLabel);
+      ).filter((label) => label !== clickedLabel && label instanceof HTMLElement);
 
       otherLabels.forEach((label) => {
-        label.style.borderColor = "transparent";
-        label.style.borderWidth = "0px";
-        label.style.borderStyle = "none";
+        (label as HTMLElement).style.borderColor = "transparent";
+        (label as HTMLElement).style.borderWidth = "0px";
+        (label as HTMLElement).style.borderStyle = "none";
       });
 
-      if (e.target.checked) {
-        clickedLabel.style.borderColor = tagLabels[i].color;
-        clickedLabel.style.borderWidth = "1px";
-        clickedLabel.style.borderStyle = "solid";
+      if (e.target && (e.target as HTMLInputElement).checked) {
+        if (clickedLabel instanceof HTMLElement) {
+          clickedLabel.style.borderColor = tagLabels[i].color;
+          clickedLabel.style.borderWidth = "1px";
+          clickedLabel.style.borderStyle = "solid";
+        }
       } else {
-        clickedLabel.style.borderColor = "transparent";
-        clickedLabel.style.borderWidth = "0px";
-        clickedLabel.style.borderStyle = "none";
+        if (clickedLabel instanceof HTMLElement) {
+          clickedLabel.style.borderColor = "transparent";
+          clickedLabel.style.borderWidth = "0px";
+          clickedLabel.style.borderStyle = "none";
+        }
       }
     });
     const text = document.createTextNode(tagLabels[i].tag);
@@ -100,15 +107,18 @@ export function Modal({ children }) {
   modal.append(buttonContainer);
 
   input.addEventListener("input", (event) => {
-    const value = event.target.value.trim();
-    addButton.classList.toggle("add-button-active", value !== "");
+    if (event.target instanceof HTMLInputElement) {
+      const value = event.target.value.trim();
+
+      addButton.classList.toggle("add-button-active", value !== "");
+    }
   });
 
   function closeModal() {
     const overlay = document.querySelector(".overlay");
     input.value = "";
     dateInput.value = "";
-    overlay.remove();
+    overlay?.remove();
     modal.remove();
   }
 
@@ -119,11 +129,11 @@ export function Modal({ children }) {
       alert("Please enter a valid task title");
       return;
     }
-    const selectedTag = document.querySelector(
+    const selectedTag = (document.querySelector(
       'input[name="tags"]:checked'
-    ).value;
+    ) as HTMLInputElement)?.value;
 
-    const newTask = {
+    const newTask: Task = {
       title: inputValue,
       isCompleted: false,
       tag: selectedTag,

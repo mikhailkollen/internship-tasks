@@ -1,12 +1,13 @@
-import { Button } from "./Button.js";
-import { ListItem } from "./Item.js";
-import { tagLabels } from "../utils.js";
-import { updateLocalStorage } from "../utils.js";
+import { Button } from "./Button";
+import { ListItem } from "./Item";
+import { tagLabels } from "../utils";
 import {
   deleteTaskFromTheServer,
   updateTaskOnTheServer,
   updateTasks,
-} from "../utils.js";
+} from "../utils";
+import { ListProps } from "../types";
+import "../styles/List.css";
 
 export const List = ({
   listItems,
@@ -15,7 +16,8 @@ export const List = ({
   titleText,
   titleClassName,
   listClassName,
-}) => {
+}: ListProps) => {
+
   const listContainer = document.createElement("div");
   listContainer.classList.add("list");
   const title = document.createElement("h2");
@@ -33,8 +35,11 @@ export const List = ({
       onClick: () => {
         const newTasks = allTasks.filter((item) => item !== task);
         updateTasks(newTasks, setAllTasks);
-        deleteTaskFromTheServer(task._id);
+        if (task._id) {
+          deleteTaskFromTheServer(task._id);
+        }
         li.remove();
+
       },
       className: "delete-button",
     });
@@ -43,23 +48,25 @@ export const List = ({
       button.style.display = "none";
     }
 
-    checkbox.addEventListener("change", () => {
+
+    checkbox?.addEventListener("change", () => {
       if (li.classList.contains("completed")) {
         li.classList.remove("completed");
         const unfinishedTasks = document.querySelector(
           ".unfinished-tasks-list"
         );
-        unfinishedTasks.append(li);
+        unfinishedTasks?.append(li);
         const newTasks = allTasks.map((item) => {
           if (item._id === task._id) {
             item.isCompleted = false;
           }
           return item;
         });
-        li.querySelector("button").style.display = "block";
-        let tag = li.querySelector(".tag-label");
+        const button = li.querySelector("button");
+        button ? (button.style.display = "block") : null;
+        let tag = li.querySelector(".tag-label") as HTMLElement;
         for (let i = 0; i < tagLabels.length; i++) {
-          if (tagLabels[i].tag === tag.innerHTML) {
+          if (tag && tagLabels[i].tag === tag.innerHTML) {
             tag.style.backgroundColor = tagLabels[i].bgColor;
             tag.style.color = tagLabels[i].color;
           }
@@ -70,15 +77,16 @@ export const List = ({
       } else {
         li.classList.add("completed");
         const completedTasks = document.querySelector(".completed-tasks-list");
-        completedTasks.append(li);
+        completedTasks?.append(li);
         const newTasks = allTasks.map((item) => {
           if (item._id === task._id) {
             item.isCompleted = true;
           }
           return item;
         });
-        li.querySelector("button").style.display = "none";
-        let tag = li.querySelector(".tag-label");
+        const button = li.querySelector("button");
+        button ? (button.style.display = "none") : null;
+        let tag = li.querySelector(".tag-label") as HTMLElement;
         tag.style.backgroundColor = "#F5F5F5";
         tag.style.color = "#838383";
         updateTaskOnTheServer({ ...task, isCompleted: true });
@@ -87,7 +95,7 @@ export const List = ({
     });
     return li;
   });
-  list.append(...taskElements);
+  list.append(...taskElements as Node[]);
   listContainer.append(list);
   return listContainer;
 };

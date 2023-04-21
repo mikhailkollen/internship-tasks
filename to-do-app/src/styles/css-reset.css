@@ -141,7 +141,3 @@ button {
   background: none;
   cursor: pointer;
 }
-
-input[type="checkbox"] {
-  margin: 0;
-}
