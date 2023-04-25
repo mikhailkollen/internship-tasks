@@ -3,7 +3,7 @@ import { Button } from "./components/Button";
 import { SearchInput } from "./components/Search";
 import { Modal } from "./components/Modal";
 import { WeatherWidget } from "./components/WeatherWidget";
-import { updateTasks, showTodayTasks } from "./utils";
+import { updateTasks, showTodayTasks, addOverlay } from "./utils";
 import { TodayTasksModal } from "./components/TodayTasksModal";
 import "./styles/css-reset.css";
 import "./styles/index.css";
@@ -11,15 +11,7 @@ import "./styles/index.css";
 (function () {
   let state: any = undefined;
 
-  /**
-   * Global application state
-   * @template T
-   * @param {T} initialValue
-   * @returns {[T, function(T): void]}
-   */
-
-
-  function useState(initialValue: any) {
+  const useState = (initialValue: any): [any, (newValue: any) => void] => {
     state = state || initialValue;
     function setValue(newValue: any) {
       state = newValue;
@@ -27,26 +19,6 @@ import "./styles/index.css";
     }
     return [state, setValue];
   }
-
-
-
-  /**
-   * Functional component for the list
-   * @param items {string[]}
-   * @returns {HTMLElement} - List element
-   */
-
-  /**
-   * Button component
-   * @param text {string}
-   * @param onClick {function}
-   * @returns {HTMLButtonElement} - Button element
-   */
-
-  /**
-   * App container
-   * @returns {HTMLDivElement} - The app container
-   */
 
   function App(): HTMLElement {
     const [allTasks, setAllTasks] = useState([]);
@@ -76,7 +48,9 @@ import "./styles/index.css";
     const list = AllLists({ children: { allTasks, setAllTasks } });
     const button = Button({
       text: "+ New Task",
-      onClick: () => addItem(modal),
+      onClick: () => {
+      addOverlay();
+      div.append(modal);}, 
       className: "add-task-button",
     });
     const searchInput = SearchInput({
@@ -87,25 +61,12 @@ import "./styles/index.css";
       const items = document.querySelectorAll("li");
 
       items.forEach((item: HTMLElement) => {
-        if (item.dataset && item.dataset.value && item.dataset.value.toLowerCase().includes(value.toLowerCase())) {
+        if (item.dataset.value?.toLowerCase().includes(value.toLowerCase())) {
           item.style.display = "flex";
         } else {
           item.style.display = "none";
         }
       });
-    }
-
-    function addItem(modal: HTMLElement) {
-      const overlay = document.createElement("div");
-      overlay.classList.add("overlay");
-      document.body.append(overlay);
-      overlay.addEventListener("click", () => {
-        overlay.remove();
-        const modalInput = document.querySelector("#modal-input") as HTMLInputElement;
-        modalInput.value = "";
-        modal.remove();
-      });
-      div.append(modal);
     }
 
     const header = document.createElement("div");

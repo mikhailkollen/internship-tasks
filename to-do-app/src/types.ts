@@ -1,9 +1,9 @@
-// type Date = string;
 type Id = string;
 type Modal = HTMLDivElement;
-type TodayTasksModalType = (tasks: Task[]) => void;
+type Tasks = Task[];
+type TodayTasksModalType = (tasks: Tasks) => void;
+type SetAllTasks = (tasks: Tasks) => void;
 
-type SetAllTasks = (tasks: Array<Task>) => void;
 
 interface ButtonProps {
   text?: string;
@@ -17,8 +17,8 @@ interface ListItemProps {
 }
 
 interface ListProps {
-  listItems: Task[],
-  allTasks: Task[],
+  listItems: Tasks,
+  allTasks: Tasks,
   setAllTasks: SetAllTasks,
   titleText: string,
   titleClassName: string,
@@ -28,7 +28,7 @@ interface ListProps {
 interface StateProps {
   children: {
     setAllTasks: SetAllTasks
-    allTasks: Task[];
+    allTasks: Tasks;
   };
 };
 

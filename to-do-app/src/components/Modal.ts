@@ -1,9 +1,9 @@
-import { tagLabels } from "../utils";
+import { addOverlay, tagLabels } from "../utils";
 import { addTaskToTheServer, updateTasks } from "../utils";
 import { StateProps, Task } from "../types";
 import "../styles/Modal.css";
 
-export function Modal({ children }: StateProps) {
+export const Modal = ({ children }: StateProps) => {
   const { setAllTasks, allTasks } = children;
   const modal = document.createElement("form");
   modal.classList.add("modal");
@@ -109,20 +109,19 @@ export function Modal({ children }: StateProps) {
   input.addEventListener("input", (event) => {
     if (event.target instanceof HTMLInputElement) {
       const value = event.target.value.trim();
-
       addButton.classList.toggle("add-button-active", value !== "");
     }
   });
 
-  function closeModal() {
+  const closeModal = () => {
     const overlay = document.querySelector(".overlay");
     input.value = "";
-    dateInput.value = "";
+    dateInput.value = new Date().toISOString().split("T")[0];
     overlay?.remove();
     modal.remove();
   }
 
-  function addTask() {
+  const addTask = () => {
     const inputValue = input.value.trim();
     const dateValue = new Date(dateInput.value);
     if (inputValue === "") {

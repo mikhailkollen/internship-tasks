@@ -1,7 +1,7 @@
 import { List } from "./List";
 import { StateProps } from "../types";
 
-export function AllLists({ children }: StateProps) {
+export const AllLists = ({ children }: StateProps) => {
   const { allTasks, setAllTasks } = children;
   const allLists = document.createElement("div");
   allLists.classList.add("all-lists");

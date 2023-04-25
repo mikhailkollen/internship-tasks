@@ -1,6 +1,6 @@
 import { InputProps } from "../types";
 
-export function SearchInput({ onInput }: InputProps) {
+export const SearchInput =({ onInput }: InputProps) => {
   const input = document.createElement("input");
   input.setAttribute("type", "text");
   input.setAttribute("placeholder", "Search Task ");

@@ -1,6 +1,6 @@
 import { ButtonProps } from "../types";
 
-export function Button({ text, onClick, className }: ButtonProps): HTMLButtonElement {
+export const Button = ({ text, onClick, className }: ButtonProps): HTMLButtonElement => {
   const button = document.createElement("button");
   if (className) {
     button.classList.add(className);

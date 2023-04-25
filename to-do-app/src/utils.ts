@@ -32,41 +32,58 @@ export const updateLocalStorage = (newTasks: Task[]) => {
 };
 
 export const addTaskToTheServer = async (task: Task) => {
-  const response = await fetch("https://tough-bee-bonnet.cyclic.app/", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(task),
-  });
-  const data = await response.json();
-  console.log(data);
-  return data;
-};
-
-export const deleteTaskFromTheServer = async (id: Id) => {
-  const response = await fetch(`https://tough-bee-bonnet.cyclic.app/${id}`, {
-    method: "DELETE",
-  });
-  const data = await response.json();
-  console.log(data);
-  return data;
-};
-
-export const updateTaskOnTheServer = async (task: Task) => {
-  const response = await fetch(
-    `https://tough-bee-bonnet.cyclic.app/${task._id}`,
-    {
-      method: "PUT",
+  try {
+    const response = await fetch("https://tough-bee-bonnet.cyclic.app/", {
+      method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(task),
-    }
-  );
-  const data = await response.json();
-  console.log(data);
-  return data;
+    });
+    const data = await response.json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.log(error);
+
+  }
+
+};
+
+export const deleteTaskFromTheServer = async (id: Id) => {
+  try {
+    const response = await fetch(`https://tough-bee-bonnet.cyclic.app/${id}`, {
+      method: "DELETE",
+    });
+    const data = await response.json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.log(error);
+
+  }
+
+};
+
+export const updateTaskOnTheServer = async (task: Task) => {
+  try {
+    const response = await fetch(
+      `https://tough-bee-bonnet.cyclic.app/${task._id}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(task),
+      }
+    );
+    const data = await response.json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.log(error);
+
+  }
 };
 
 export const addOverlay = () => {
@@ -76,9 +93,9 @@ export const addOverlay = () => {
   overlay.addEventListener("click", () => {
     overlay.remove();
     const modal = document.querySelector(".modal");
-    if (modal) {
-      modal.remove();
-    }
+    const modalInput = document.querySelector("#modal-input") as HTMLInputElement;
+    if (modalInput)   modalInput.value = "";
+    modal?.remove();
   });
   return overlay;
 };
@@ -114,7 +131,7 @@ export const showTodayTasks = (tasks: Task[], TodayTasksModal: TodayTasksModalTy
   }
 };
 
-export const updateTasks = (tasks: Task[], setAllTasks: (newValue: Task[]) => void) => {
+export const updateTasks = (tasks: any, setAllTasks: (newValue: any) => void) => {
   localStorage.setItem("tasks", JSON.stringify(tasks));
   setAllTasks(tasks);
 };
