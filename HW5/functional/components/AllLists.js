@@ -6,12 +6,12 @@ export function AllLists({ allTasks, setAllTasks }) {
 
   if (allTasks) {
     const listItems = allTasks.filter((task) => {
-      if (task.status !== "completed") {
+      if (!task.isCompleted) {
         return task;
       }
     });
     const completedListItems = allTasks.filter((task) => {
-      if (task.status === "completed") {
+      if (task.isCompleted) {
         return task;
       }
     });

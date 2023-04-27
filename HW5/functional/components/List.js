@@ -2,6 +2,11 @@ import { Button } from "./Button.js";
 import { ListItem } from "./Item.js";
 import { tagLabels } from "../utils.js";
 import { updateLocalStorage } from "../utils.js";
+import {
+  deleteTaskFromTheServer,
+  updateTaskOnTheServer,
+  updateTasks,
+} from "../utils.js";
 
 export const List = ({
   listItems,
@@ -22,19 +27,19 @@ export const List = ({
   list.classList.add(listClassName);
 
   const taskElements = listItems.map((task) => {
-    const li = ListItem({ task });
+    const li = ListItem({ task, isModalTask: false });
     const checkbox = li.querySelector("input");
     const button = Button({
       onClick: () => {
         const newTasks = allTasks.filter((item) => item !== task);
-        setAllTasks(newTasks);
-        updateLocalStorage(newTasks);
+        updateTasks(newTasks, setAllTasks);
+        deleteTaskFromTheServer(task._id);
         li.remove();
       },
       className: "delete-button",
     });
     li.append(button);
-    if (task.status === "completed") {
+    if (task.isCompleted === true) {
       button.style.display = "none";
     }
 
@@ -45,9 +50,9 @@ export const List = ({
           ".unfinished-tasks-list"
         );
         unfinishedTasks.append(li);
-        const updatedLocalStorage = allTasks.map((item) => {
-          if (item.title === task.title) {
-            item.status = null;
+        const newTasks = allTasks.map((item) => {
+          if (item._id === task._id) {
+            item.isCompleted = false;
           }
           return item;
         });
@@ -59,14 +64,16 @@ export const List = ({
             tag.style.color = tagLabels[i].color;
           }
         }
-        updateLocalStorage(updatedLocalStorage);
+        updateTaskOnTheServer({ ...task, isCompleted: false });
+
+        updateTasks(newTasks, setAllTasks);
       } else {
         li.classList.add("completed");
         const completedTasks = document.querySelector(".completed-tasks-list");
         completedTasks.append(li);
-        const updatedLocalStorage = allTasks.map((item) => {
-          if (item.title === task.title) {
-            item.status = "completed";
+        const newTasks = allTasks.map((item) => {
+          if (item._id === task._id) {
+            item.isCompleted = true;
           }
           return item;
         });
@@ -74,7 +81,8 @@ export const List = ({
         let tag = li.querySelector(".tag-label");
         tag.style.backgroundColor = "#F5F5F5";
         tag.style.color = "#838383";
-        updateLocalStorage(updatedLocalStorage);
+        updateTaskOnTheServer({ ...task, isCompleted: true });
+        updateTasks(newTasks, setAllTasks);
       }
     });
     return li;

@@ -28,3 +28,96 @@ export const checkIfTomorrow = (date) => {
 export const updateLocalStorage = (newTasks) => {
   localStorage.setItem("tasks", JSON.stringify(newTasks));
 };
+
+export const uniqueId = () => {
+  const timestamp = Date.now().toString(36);
+  const randomStr = Math.random().toString(36).substring(2, 8);
+  return `${timestamp}-${randomStr}`;
+};
+
+export const addTaskToTheServer = async (task) => {
+  const response = await fetch("https://tough-bee-bonnet.cyclic.app/", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(task),
+  });
+  const data = await response.json();
+  console.log(data);
+  return data;
+};
+
+export const deleteTaskFromTheServer = async (id) => {
+  const response = await fetch(`https://tough-bee-bonnet.cyclic.app/${id}`, {
+    method: "DELETE",
+  });
+  const data = await response.json();
+  console.log(data);
+  return data;
+};
+
+export const updateTaskOnTheServer = async (task) => {
+  const response = await fetch(
+    `https://tough-bee-bonnet.cyclic.app/${task._id}`,
+    {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(task),
+    }
+  );
+  const data = await response.json();
+  console.log(data);
+  return data;
+};
+
+export const addOverlay = () => {
+  const overlay = document.createElement("div");
+  overlay.classList.add("overlay");
+  document.body.append(overlay);
+  overlay.addEventListener("click", () => {
+    overlay.remove();
+    document.querySelector(".modal").remove();
+  });
+  return overlay;
+};
+
+export const checkIfModalShownToday = () => {
+  const localStorageModal = localStorage.getItem("todayTasksShown");
+  if (!localStorageModal) {
+    return false;
+  }
+  const today = new Date();
+  const todayDate = `${today.getDate()}.${
+    today.getMonth() + 1
+  }.${today.getFullYear()}`;
+  return localStorageModal === todayDate;
+};
+
+export const setModalShown = () => {
+  const today = new Date();
+  const todayDate = `${today.getDate()}.${
+    today.getMonth() + 1
+  }.${today.getFullYear()}`;
+  localStorage.setItem("todayTasksShown", todayDate);
+};
+
+export const showTodayTasks = (tasks, TodayTasksModal) => {
+  const todayTasks = tasks.filter((task) => {
+    if (!task.isCompleted) {
+      return checkIfToday(task.date);
+    }
+  });
+  if (todayTasks.length && checkIfModalShownToday() === false) {
+    TodayTasksModal(todayTasks);
+  } else {
+    setModalShown();
+  }
+};
+
+export const updateTasks = (tasks, setAllTasks) => {
+  localStorage.setItem("tasks", JSON.stringify(tasks));
+  setAllTasks(tasks);
+};
