@@ -1,6 +1,8 @@
-import { tagLabels, checkIfToday, checkIfTomorrow } from "../utils.js";
+import { tagLabels, checkIfToday, checkIfTomorrow } from "../utils";
+import { ListItemProps } from "../types";
+import "../styles/Item.css";
 
-export const ListItem = ({ task, isModalTask }) => {
+export const ListItem = ({ task, isModalTask }: ListItemProps) => {
   const li = document.createElement("li");
   li.setAttribute("data-value", `${task.title}`);
   li.setAttribute("data-id", `${task._id}`);

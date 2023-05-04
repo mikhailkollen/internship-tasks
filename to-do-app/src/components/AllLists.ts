@@ -1,10 +1,13 @@
-import { List } from "./List.js";
+import { List } from "./List";
+import { StateProps } from "../types";
 
-export function AllLists({ allTasks, setAllTasks }) {
+export const AllLists = ({ children }: StateProps) => {
+  const { allTasks, setAllTasks } = children;
   const allLists = document.createElement("div");
   allLists.classList.add("all-lists");
 
   if (allTasks) {
+
     const listItems = allTasks.filter((task) => {
       if (!task.isCompleted) {
         return task;
@@ -15,6 +18,7 @@ export function AllLists({ allTasks, setAllTasks }) {
         return task;
       }
     });
+
 
     const completedTasksList = List({
       listItems: completedListItems,
